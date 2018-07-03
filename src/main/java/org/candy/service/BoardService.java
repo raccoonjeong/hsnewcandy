@@ -5,7 +5,6 @@ import java.util.List;
 import org.candy.domain.Criteria;
 import org.candy.domain.TruckVO;
 
-
 public interface BoardService {
 	
 	public List<TruckVO> list(Criteria cri);

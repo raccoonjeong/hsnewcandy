@@ -1,7 +1,8 @@
 package org.candy.mapper;
 
+import java.util.List;
 
-
+import org.candy.domain.Criteria;
 import org.candy.domain.FreeboardVO;
 
 public interface FreeboardMapper {

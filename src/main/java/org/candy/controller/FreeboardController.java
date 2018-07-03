@@ -1,10 +1,6 @@
 package org.candy.controller;
 
-
-
 import org.candy.domain.Criteria;
-
-
 import org.candy.domain.FreeboardVO;
 import org.candy.domain.PageMaker;
 import org.candy.service.FreeboardService;
@@ -13,16 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-
-
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import org.springframework.web.bind.annotation.RequestMapping;
-
-
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;

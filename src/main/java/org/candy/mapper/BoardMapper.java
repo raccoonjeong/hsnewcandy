@@ -3,9 +3,8 @@ package org.candy.mapper;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
-import org.candy.domain.TruckVO;
 import org.candy.domain.Criteria;
-
+import org.candy.domain.TruckVO;
 
 public interface BoardMapper {
 	

@@ -5,6 +5,20 @@
 
 <mapper namespace="org.candy.mapper.FreeboardMapper">
 
+	<insert id="register">
+	insert into tbl_freeboard (title, content, writer) 
+	values (#{title},#{content},#{writer}); 
+	</insert>
+
+	<update id="modify">
+	update tbl_freeboard set title=#{title}, content=#{content}, updatedate=now() 
+	where bno=#{bno};
+	</update>
+	
+	<select id="read" resultType="org.candy.domain.FreeboardVO">
+		select * from tbl_freeboard where bno = #{bno};
+	</select>
+
 <sql id="search">
 		<where>
 			<if test="arr!= null">
@@ -31,4 +45,5 @@
 		<include refid="search"></include>
 	</select>
 	
+
 </mapper>

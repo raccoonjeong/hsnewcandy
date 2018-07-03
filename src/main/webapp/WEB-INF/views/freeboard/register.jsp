@@ -157,8 +157,11 @@ text-align: center;
 						</div>
 
 						<div class="6u 12u$(xsmall)">
-							<input type="text" name="writer" id="writer" value='<sec:authentication property="principal.username"/>' 
-							readonly="readonly"	placeholder="writer" />
+
+						<input type="text" name="writer" id="writer" value="user01"/>
+							<%-- <input type="text" name="writer" id="writer" value='<sec:authentication property="principal.username"/>' 
+							readonly="readonly"	placeholder="writer" /> --%>
+
 						</div>
 
 						<div class="12u$">
@@ -173,7 +176,7 @@ text-align: center;
 					<div class="uploadedList">
 					
 					</div>
-					<div id="map" style="width:1000px; height:400px;"></div>
+
 						<div class="12u$">
 							<ul class="actions">
 								<li><input type="button" class="special list" value="List"></li>
@@ -193,7 +196,7 @@ text-align: center;
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous"></script>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e8318797fd6445767e2561cad63793"></script>
+
 		
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script id="template" type="text/x-handlebars-template">
@@ -208,23 +211,7 @@ text-align: center;
 <script>
 
 $(document).ready(function(){
-	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
-	var options = { //지도를 생성할 때 필요한 기본 옵션
-		center: new daum.maps.LatLng(37.526571, 126.933590), //지도의 중심좌표.
-		level: 3 //지도의 레벨(확대, 축소 정도)
-	};
 
-	var map = new daum.maps.Map(container, options); //지도 생성 및 객체 리턴
-	// 마커가 표시될 위치입니다 
-	var markerPosition  = new daum.maps.LatLng(37.526571, 126.933590); 
-
-	// 마커를 생성합니다
-	var marker = new daum.maps.Marker({
-	    position: markerPosition
-	});
-
-	// 마커가 지도 위에 표시되도록 설정합니다
-	marker.setMap(map);
 	
 	
 	var template = Handlebars.compile($("#template").html());

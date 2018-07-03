@@ -158,8 +158,14 @@ text-align: center;
 							<input type="text" name="title" id="title" id="name" value="${vo.title}" />
 						</div>
 						<div class="6u 12u$(xsmall)">
+
+						<input type="text" name="writer" id="writer" value="user01" />
+							<%-- <input type="text" name="writer" id="writer" value='<sec:authentication property="principal.username"/>' 
+							readonly="readonly"	placeholder="writer" /> --%>
+
 							<input type="text" name="writer" id="writer" value='<sec:authentication property="principal.username"/>' 
 							readonly="readonly"	placeholder="writer" />
+
 						</div>
 						<div class="12u$">
 							<textarea name="content" id="message"
@@ -179,7 +185,9 @@ text-align: center;
 							</ul>
 						</div>
 					</div>
-					<input type="hidden" name="fno" value="${vo.fno}">
+
+					<input type="hidden" name="bno" value="${vo.bno}">
+
 					<input type="hidden" name="keyword" value="${cri.keyword}">
 					<input type="hidden" name="page" value="${cri.page}">
 					<input type="hidden" name="type" value="${cri.type}">

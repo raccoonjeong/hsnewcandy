@@ -13,7 +13,8 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml",
+		"file:src/main/webapp/WEB-INF/spring/security-context.xml"})
 public class TimeMapperTest {
 	
 	@Setter(onMethod_= {@Autowired})

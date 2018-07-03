@@ -23,7 +23,7 @@ public interface BoardMapper {
 
 	public int modify(TruckVO vo);
 	
-	public int updateReplyCnt(@Param("fno")Integer fno, @Param("amount")int amount);
+	public int updateReviewCnt(@Param("fno")Integer fno, @Param("amount")int amount);
 
 	public int addAttach(String fullName);
 	

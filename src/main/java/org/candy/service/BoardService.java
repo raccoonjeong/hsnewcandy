@@ -2,8 +2,8 @@ package org.candy.service;
 
 import java.util.List;
 
-import org.candy.domain.TruckVO;
 import org.candy.domain.Criteria;
+import org.candy.domain.TruckVO;
 
 
 public interface BoardService {
@@ -20,7 +20,7 @@ public interface BoardService {
 
 	public void modify(TruckVO vo);
 	
-	public int updateReplyCnt(Integer fno, int amount);
+	public int updateReviewCnt(Integer fno, int amount);
 
 	public void updateViewCnt(Integer fno);
 	

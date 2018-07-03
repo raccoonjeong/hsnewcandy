@@ -2,21 +2,20 @@ package org.candy.service;
 
 import org.candy.domain.UserAuthVO;
 import org.candy.domain.UserVO;
-import org.candy.mapper.MemberMapper;
+import org.candy.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Service
-public class MemberServiceImpl implements MemberService{
+public class UserServiceImpl implements UserService{
 
 	@Autowired
-	private MemberMapper mapper;
+	private UserMapper mapper;
 	
 	@Autowired
 	private PasswordEncoder encoder;

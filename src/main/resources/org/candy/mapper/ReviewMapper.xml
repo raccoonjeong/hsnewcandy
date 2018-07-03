@@ -2,14 +2,14 @@
 <!DOCTYPE mapper
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.candy.mapper.ReplyMapper">
+<mapper namespace="org.candy.mapper.ReviewMapper">
 
 <!-- 원댓글용 -->
   <insert id="create">
-   insert into tbl_areply (bno,rcontent,replyer) values(#{bno},#{rcontent}, #{replyer}); 
+   insert into tbl_review (fno, rcontent, replyer) values(#{fno},#{rcontent}, #{replyer}); 
   </insert>
   <update id ="updateup">
-  	update tbl_areply set gno = last_insert_id() where rno = last_insert_id();  
+  	update tbl_review set gno = last_insert_id() where rno = last_insert_id();  
   </update>
   
 <!-- 대댓글용 -->

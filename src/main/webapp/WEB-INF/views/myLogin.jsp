@@ -39,11 +39,11 @@
 float: right;
 }
 
-.midmid{
+.uiduid{
 	width: 100%;
 }
 
-.mpwmid{
+.upwuid{
 	width: 100%;
 }
 
@@ -101,11 +101,11 @@ height: 3rem;
 
 				<form action="/login" method="post">
 					<div class="row uniform">
-						<div class="midmid"> 
+						<div class="uiduid"> 
 						ID<input type="text" name = "username">	
 						</div>
 
-						<div class="mpwmid">
+						<div class="upwuid">
 						PASSWORD<input type="text" name = "password">					
 						</div>
 

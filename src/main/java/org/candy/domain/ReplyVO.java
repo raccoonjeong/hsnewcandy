@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class ReplyVO {
 
-	private Integer rno, fno, gno, ord;
+	private Integer rno, bno, gno, ord;
 	private String rcontent, replyer;
 	private Date regdate, updatedate;
 	

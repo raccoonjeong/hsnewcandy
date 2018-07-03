@@ -5,9 +5,9 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class ReplyDTO {
+public class ReviewDTO {
 
-	private int replyCnt;
-	private List<ReplyVO> list;
+	private int reviewCnt;
+	private List<ReviewVO> list;
 	
 }

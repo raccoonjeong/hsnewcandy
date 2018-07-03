@@ -120,20 +120,20 @@ height: 3rem;
 				<form action="/join" method="post">
 					<div class="row uniform">
 						<div class="midinput"> 
-						ID<input type="text" name = "mid" size="100%" class="checkid">
+						ID<input type="text" name = "uid" size="100%" class="checkid">
 						</div>
 						
-						<div class="midCheck">
+						<div class="uidCheck">
 						<button class="idCheck">ID CHECK</button>
 						<input type="hidden" name = "${_csrf.parameterName}" value ="${_csrf.token}">
 					</div>
 						
-						<div class="mnameinput"> 
-					    Name<input type="text" name = "mname">	
+						<div class="unameinput"> 
+					    Name<input type="text" name = "uname">	
 						</div>
 
-						<div class="mpwinput">
-						PASSWORD<input type="text" name = "mpw">					
+						<div class="upwinput">
+						PASSWORD<input type="text" name = "upw">					
 						</div>						
 				
 						<div class="emailinput">
@@ -208,15 +208,15 @@ height: 3rem;
 		$(".idCheck").on("click",function(e){
 			console.log("click...");
 			e.preventDefault();
-			var mid = $('.checkid').val();
-			console.log("mid1...",mid);
+			var uid = $('.checkid').val();
+			console.log("uid1...",uid);
 			
-			if(pattern.test(mid) == false){
-				console.log("mid2..",pattern.test(mid));
+			if(pattern.test(uid) == false){
+				console.log("uid2..",pattern.test(uid));
 				alert("아이디는 한글,영문 및 숫자만 가능합니다");
 				return false;
 			}
-			if(mid == ""){
+			if(uid == ""){
 				alert("아이디를 입력해주세요");
 				return false;
 			}
@@ -231,7 +231,7 @@ height: 3rem;
 		            "content-type" : "application/json",
 		            "x-http-method-override" : "POST"
 		          },
-				data : mid,
+				data : uid,
 				success: function(data){
 					if(data === 1){
 						alert("이미 존재하는 아이디입니다");
@@ -239,7 +239,7 @@ height: 3rem;
 					if(data === 0){
 						alert("사용 가능한 아이디입니다")
 						idCheck = true; //아이디 중복확인 한것 확인됬을 경우 true로 저장
-						inputId = mid;
+						inputId = uid;
 					}
 				}
 			});

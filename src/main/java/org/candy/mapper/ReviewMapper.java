@@ -4,19 +4,17 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.candy.domain.Criteria;
-import org.candy.domain.ReplyVO;
+import org.candy.domain.ReviewVO;
 
-public interface ReplyMapper {
+public interface ReviewMapper {
 
-	public int create(ReplyVO vo);
+	public int create(ReviewVO vo);
 	
-	public ReplyVO read(Integer rno);
+	public ReviewVO read(Integer rno);
 	
-	public int update(ReplyVO vo);
+	public int update(ReviewVO vo);	
 	
-	
-	
-	public List<ReplyVO> list(
+	public List<ReviewVO> list(
 			@Param("cri") Criteria cri,
 			@Param("fno") Integer fno);
 	
@@ -24,16 +22,16 @@ public interface ReplyMapper {
 	
 	public int getFno(Integer rno);
 
-	public int updateup(ReplyVO vo);
+	public int updateup(ReviewVO vo);
 	
-	public int rereply(ReplyVO vo);
+	public int rereview(ReviewVO vo);
 	
 	
 	public int delete(Integer rno);
 	
 	public int haveChild(Integer rno);
 	
-	public int deleteParentRply(Integer rno); 
+	public int deleteParentReview(Integer rno); 
 	
 	
 }

@@ -1,20 +1,10 @@
 package org.candy.util;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.text.DecimalFormat;
 import java.util.Calendar;
-import java.util.UUID;
-
-import javax.imageio.ImageIO;
-
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.multipart.MultipartFile;
-
 
 import lombok.extern.log4j.Log4j;
-import net.coobird.thumbnailator.Thumbnailator;
 @Log4j
 public class UploadFileUtils {
 	

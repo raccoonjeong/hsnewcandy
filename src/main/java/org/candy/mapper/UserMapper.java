@@ -1,12 +1,12 @@
-package org.candy.service;
+package org.candy.mapper;
 
 import org.apache.ibatis.annotations.Param;
 import org.candy.domain.UserAuthVO;
 import org.candy.domain.UserVO;
 
-public interface MemberService {
-	
-	public UserVO read(String mid);
+public interface UserMapper {
+
+	public UserVO read(String uid);
 	
 	public void create(UserVO vo);
 	
@@ -14,6 +14,6 @@ public interface MemberService {
 	
 	public void updatePassword(@Param("uid")String uid, @Param("eupw")String encryptedPw);
 	
-	public Integer idcheck(String mid);
-
+	public Integer idcheck(String uid);
+	
 }

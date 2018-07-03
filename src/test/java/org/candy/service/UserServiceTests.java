@@ -1,13 +1,13 @@
-package org.candy.mapper;
+package org.candy.service;
 
+import org.candy.domain.UserAuthVO;
+import org.candy.domain.UserVO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.candy.domain.UserAuthVO;
-import org.candy.domain.UserVO;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -16,10 +16,11 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml",
 	"file:src/main/webapp/WEB-INF/spring/security-context.xml"})
 @Log4j
-public class MemberMapperTests {
+public class UserServiceTests {
+	
 
 	@Setter(onMethod_= {@Autowired})
-	private MemberMapper mapper;
+	private UserService service;
 	
 	@Setter(onMethod_= {@Autowired})
 	private PasswordEncoder encoder;
@@ -29,42 +30,33 @@ public class MemberMapperTests {
 		
 		UserVO vo = new UserVO();
 		
-		vo.setUid("zzz");
+		vo.setUid("zxzx");
 		vo.setUpw("1111");
-		vo.setUname("zzzz");
 		vo.setRole("s");
-		vo.setEmail("2222@gmail.com");
-		vo.setPhone_number("010-0000-0000");
+		vo.setUname("zzz");
+		vo.setEmail("3333@gmail.com");
 		
-		mapper.create(vo);
+		service.create(vo);
 	}
 	
 	@Test
 	public void TestCreateAuth() {
 		UserAuthVO vo = new UserAuthVO();
 		
-		vo.setUid("zzz");
-		vo.setAuth("ROLE_USER");
+		vo.setUid("zxzx");
 		
-		mapper.createAuth(vo);
+		service.createAuth(vo);
 		
 	}
 	
 	@Test
 	public void TestUpdatePassword() throws Exception{
 		
-		String mid = "zzz";
+		String mid = "zxzx";
 		String empw = encoder.encode("1111");
 		log.info("~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+empw);
 		
-		mapper.updatePassword(mid,empw);
-		
+		service.updatePassword(mid,empw);
 	}
-	
-	@Test
-	public void TestIdCheck() {
-		String mid = "zzz";
-		
-		mapper.idcheck(mid);
-	}
+
 }

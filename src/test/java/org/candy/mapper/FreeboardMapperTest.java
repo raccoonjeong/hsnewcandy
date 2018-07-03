@@ -1,7 +1,5 @@
 package org.candy.mapper;
 
-
-import org.candy.mapper.TimeMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,15 +13,15 @@ import lombok.extern.log4j.Log4j;
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml",
 	"file:src/main/webapp/WEB-INF/spring/security-context.xml"})
 @Log4j
+public class FreeboardMapperTest {
 
-public class TimeMapperTest {
-	
+
 	@Setter(onMethod_= {@Autowired})
-	private TimeMapper mapper;
-	
-	@Test
-	public void getTime() {
-		log.info(mapper.getTime());
-	}
+	private FreeboardMapper mapper;
 
+	@Test
+	public void getRead() {
+		log.info(mapper.read(3));
+	}
+	
 }

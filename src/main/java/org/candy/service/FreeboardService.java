@@ -1,6 +1,7 @@
 package org.candy.service;
 
 
+
 import java.util.List;
 
 import org.candy.domain.Criteria;
@@ -20,6 +21,5 @@ public interface FreeboardService {
 
 	public int getTotal(Criteria cri);
 	
-
 
 }

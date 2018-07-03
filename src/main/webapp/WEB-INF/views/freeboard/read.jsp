@@ -233,7 +233,9 @@ text-align: center;
 		<div class="logo">
 	<div class="loginbtn">
 
-<sec:authorize access="isAnonymous()">
+
+<%-- <sec:authorize access="isAnonymous()">
+
 	<form action="/login" method="post">
 	<button>login</button>
 	<input type="hidden" name = "${_csrf.parameterName}" value ="${_csrf.token}">
@@ -249,6 +251,8 @@ text-align: center;
 </sec:authorize>
 
 
+ --%>
+
 		 </div>
 		</div>
 		<a href="#menu">Menu</a>
@@ -256,7 +260,9 @@ text-align: center;
 	<!-- Nav -->
 	<nav id="menu">
 		<ul class="links">
-			<li><a href="/board/list">Home</a></li>
+
+			<li><a href="/freeboard/list">Home</a></li>
+
 			<li><a href="/up/ajax">Image gallery</a></li>
 			
 		</ul>
@@ -280,7 +286,9 @@ text-align: center;
 					<table class="alt">
 						<thead>
 							<tr>
-								<th>No.<c:out value="${vo.fno}" /></th>
+
+								<th>No.<c:out value="${vo.bno}" /></th>
+
 							</tr>
 						</thead>
 						<tbody>
@@ -322,7 +330,9 @@ text-align: center;
 						<ul class="actions">
 							<li><input type="button" class="special list" value="List"></li>
 							<li><input type="button" class="special modify"
-								data-fno="${vo.fno}" value="Modify" /></li>
+
+								data-bno="${vo.bno}" value="Modify" /></li>
+
 							<li><input type="button" class="special remove" value="Remove" /></li>
 						</ul>
 					</div>
@@ -332,14 +342,17 @@ text-align: center;
 					
 					<div class="wrapper">
     <div class="inputDiv"><h1>여러분의 소중한 댓글은 글쓴이에게 힘이 됩니다.</h1>
-        <div><label style="text-align: left">댓글내용:</label><input type="text" name="content"/></div>
-        <div><label style="text-align: left">댓글쓴이:</label><input type="text" name="replyer" 
+
+         <div><label style="text-align: left">댓글내용:</label><input type="text" name="content"/></div>
+        <div><label style="text-align: left">댓글쓴이:</label><%-- <input type="text" name="replyer" 
         			value='<sec:authentication property="principal.username"/>'	readonly="readonly" 
-        			placeholder='<sec:authentication property="principal.username"/>' /></div>
+        			placeholder='<sec:authentication property="principal.username"/>' /> --%><input type="text" name="replyer" 
+        			value='user01' /></div>
         <div>
             <button class="rbtn" data-type="register">Register</button>
             
-        </div>
+        </div> 
+
     </div>
 
     <div class="listDiv">
@@ -384,9 +397,13 @@ text-align: center;
             <label style="text-align: left">댓글내용:</label><input type="text" name="reModalContent">
          <!--    <label style="text-align: left">댓글쓴이:</label><input type="text" name="reModalReplyer"> -->
             
-            <label style="text-align: left">댓글쓴이:</label><input type="text" name="reModalReplyer" 
+
+            <label style="text-align: left">댓글쓴이:</label><%-- <input type="text" name="reModalReplyer" 
         			value='<sec:authentication property="principal.username"/>'	readonly="readonly" 
-        			placeholder='<sec:authentication property="principal.username"/>' />
+        			placeholder='<sec:authentication property="principal.username"/>' /> --%>
+        			<input type="text" name="replyer" 
+        			value='user01' />
+
             
             
         </div>
@@ -400,7 +417,9 @@ text-align: center;
 
 	
 	<form role="form" action="remove" method="post">
-		<input type="hidden" name="fno" value="${vo.fno}">
+
+		<input type="hidden" name="bno" value="${vo.bno}">
+
 
 	<input type="hidden" name="keyword" value="${cri.keyword}">
 			 <input type="hidden" name="page" value="${cri.page}">
@@ -452,7 +471,9 @@ text-align: center;
 			console.log("reviewCnt",reviewCnt);
 		    	/* 목록가기 */
 					$(".actions").on("click",".list", function(e) {
-						self.location="/board/list${cri.makeSearch(cri.page)}";
+
+						self.location="/freeboard/list${cri.makeSearch(cri.page)}";
+
 					});
 					
 				/* 삭제  */
@@ -474,16 +495,20 @@ text-align: center;
 								
 							});
 						}				
-						formObj.attr("action","/board/remove")					
+
+						formObj.attr("action","/freeboard/remove")					
+
 						formObj.submit();
 					});
 					
 				/* 수정  */
 					$(".actions").on("click",".modify", function(e) {
-						var fno = $(this).attr("data-fno");
+
+						var bno = $(this).attr("data-bno");
 						alert("첨부파일이 다 삭제되는데도 수정하실건가요?");
 						
-						self.location="/board/modify${cri.makeSearch(cri.page)}&fno="+fno;
+						self.location="/freeboard/modify${cri.makeSearch(cri.page)}&bno="+bno;
+
 					});
 					
 					var msg = '<c:out value="${msg}"/>';
@@ -513,7 +538,9 @@ text-align: center;
         var mbtn = $(".mbtn");
         var dbtn = $(".dbtn");
         var listUL = $(".listDiv");
-        var fno = ${vo.fno};
+
+        var bno = ${vo.bno};
+
         var reviewPage = 1;
         var gno=1;
 
@@ -528,10 +555,11 @@ text-align: center;
         	
         }
 
-        function loadList(fno, page) {
+        function loadList(bno, page) {
            reviewPage = page || 1;
-            /* var fno = fno || 1; */
-            $.getJSON("/reviews/list/" + fno + "/" + page + ".json", function (data) {
+            /* var bno = bno || 1; */
+            $.getJSON("/reviews/list/" + bno + "/" + page + ".json", function (data) {
+
                 console.log(data.reviewCnt);
                 console.log(data.list);
                 var str = "";
@@ -571,7 +599,9 @@ text-align: center;
                 console.log("로드리스트 페이지는"+reviewPage);
             })
         }
-        loadList(fno, 1);
+
+        loadList(bno, 1);
+
 
         function saveReviews(ord, inputgno) {
 
@@ -580,13 +610,17 @@ text-align: center;
         		 if(ord == 0){
         			 
         			 if(inputContent.val()!="" && inputReplyer.val()!=""){       				 
-        				var data = {fno: fno, rcontent: inputContent.val(), replyer: inputReplyer.val(), ord:0};
+
+        				var data = {bno: bno, rcontent: inputContent.val(), replyer: inputReplyer.val(), ord:0};
+
         			}else {
                 		alert("내용을 똑바로 입력하세요 ㅡ_ㅡ!!"); return;
                 	}
         		 }else{
         			if(reContent.val()!="" && reReplyer.val()!=""){
-        				var data = {fno: fno, rcontent: reContent.val(), replyer: reReplyer.val(),ord:1, gno: inputgno};
+
+        				var data = {bno: bno, rcontent: reContent.val(), replyer: reReplyer.val(),ord:1, gno: inputgno};
+
         			}else {
         	        		alert("내용을 똑바로 입력하세요 ㅡ_ㅡ!!"); return;
         	        	}
@@ -604,7 +638,9 @@ text-align: center;
                	 data: JSON.stringify(data),
                	 success: function (result) {
                	     
-                     loadList(fno, 1);
+
+                     loadList(bno, 1);
+
                      alert("등록이 완료되었습니다.");
                      inputContent.val("");
                      inputReplyer.val("");
@@ -646,7 +682,9 @@ text-align: center;
                 data: JSON.stringify(data),
                 success: function (result) {
                     
-                    loadList(fno, reviewPage);
+
+                    loadList(bno, reviewPage);
+
                     modalLayer.fadeOut("slow");
                 }
             });
@@ -664,7 +702,9 @@ text-align: center;
                 
                 success: function (result) {
                     
-                    loadList(fno, reviewPage);
+
+                    loadList(bno, reviewPage);
+
                 }
             });
         }
@@ -674,7 +714,9 @@ text-align: center;
             console.log("hi~~~");
             reviewPage = $(this).attr("href");
 
-            loadList(fno, reviewPage);
+
+            loadList(bno, reviewPage);
+
 
         });
         
@@ -758,10 +800,12 @@ text-align: center;
             alert("수정되었습니다.");
         });
         
-        var fno = ${vo.fno};
+
+        var bno = ${vo.bno};
         var template = Handlebars.compile($("#templateAttach").html());
         
-        $.getJSON("/board/getAttach/"+fno, function(list){
+        $.getJSON("/freeboard/getAttach/"+bno, function(list){
+
         	$(list).each(function(){
         		
         		

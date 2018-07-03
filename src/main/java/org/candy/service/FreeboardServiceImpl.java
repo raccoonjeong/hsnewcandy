@@ -5,12 +5,14 @@ import java.util.List;
 
 import org.candy.domain.Criteria;
 
+
 import org.candy.domain.FreeboardVO;
 import org.candy.mapper.FreeboardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.Setter;
+
 
 import lombok.extern.log4j.Log4j;
 

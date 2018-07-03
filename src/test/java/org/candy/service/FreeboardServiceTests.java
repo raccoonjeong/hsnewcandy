@@ -1,6 +1,9 @@
 package org.candy.service;
 
 
+import org.candy.mapper.FreeboardMapperTest;
+
+
 
 import org.candy.domain.FreeboardVO;
 
@@ -11,6 +14,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -26,7 +30,11 @@ public class FreeboardServiceTests {
 	@Setter(onMethod_= {@Autowired})
 	private FreeboardService service;
 	
-
+	@Test
+	public void getRead() {
+		log.info(service.read(3));
+	}
+  
 	@Test
 	public void register() {
 		log.info("Service register Test");
@@ -56,6 +64,5 @@ public class FreeboardServiceTests {
 		Criteria cri = new Criteria(3);
 		log.info(service.list(cri));
 	}
-
 
 }

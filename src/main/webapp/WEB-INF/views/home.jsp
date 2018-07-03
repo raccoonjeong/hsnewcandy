@@ -1,13 +1,10 @@
 <!DOCTYPE HTML>
-<!--
-	Hielo by TEMPLATED
-	templated.co @templatedco
-	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
--->
+
 <html>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <head>
 <title>Hielo by TEMPLATED</title>
 <meta charset="utf-8" />
@@ -65,43 +62,12 @@ padding: 0rem 0 0 0;}
 	color: white;
 }
 
-.pagination
-
- 
-
-a
-
-
-:hover
-
-
-:not
-
- 
-
-(
-.active
-
- 
-
-){
-background-color
-
-
-:
-
- 
-
-pink
-
-
-;
+.pagination a :hover :not(.active){
+background-color:pink;
 }
 .categoryList {
 	text-align: center;
 	background-color: rgba(252, 205, 0, 0.66);
-	
-
 }
 
 .category1 {
@@ -111,10 +77,7 @@ pink
 	font-size: 1.8em;
 	    border-bottom: 1.5px solid black;
 /* 	border-left: 2px solid red;
-	border-right: 2px solid red; */
-
-	
-	
+	border-right: 2px solid red; */	
 }
 .categoryDiv{
     width: 100%;
@@ -143,10 +106,6 @@ text-align: center;
 /* border:1px solid #8a4680; */
 margin-top: 5px
 }
-
-
-
-
 </style>
 <body>
 
@@ -158,7 +117,31 @@ margin-top: 5px
 	<!-- Header -->
 	<header id="header">
 		<div class="logo">
-			<button>Login</button>
+		
+		<div class="loginbtn">
+
+<sec:authorize access="isAnonymous()">
+	<form action="/myLogin">
+	<button>login</button>
+	
+	</form>	
+</sec:authorize>
+
+<div class="logOutbtn">
+<sec:authorize access="isAuthenticated()">
+	<form action="/logout" method="post" >
+	<sec:authentication property="principal" var="user"/>
+	<div class="btnlogOut1">
+	<strong>${user.username}</strong>님 환영합니다.
+	</div>
+	<div class="btnlogOut2">
+	<button class="lOutbtn">logout</button>
+	</div>
+	<input type="hidden" name = "${_csrf.parameterName}" value ="${_csrf.token}">
+	</form>
+</sec:authorize>
+</div>
+		 </div>
 		</div>
 		<a href="#menu">Menu</a>
 	</header>
@@ -175,17 +158,12 @@ margin-top: 5px
 		<!-- user01님,<br>
 	아직 자신의 푸드트럭을 <br>등록하지 않으셨나요?<br>
 	<button>Register</button>	 -->
-	user01님,<br>
-	방문을 환영합니다.
+	
 	<button>Open</button>
 	<button>Close</button>
 	<button>Modify</button>
-	</li>
-	
-	
-	  	 
-		</ul>
-		
+	</li>	  	 
+		</ul>		
 	</nav>
 	
 	<!-- One -->

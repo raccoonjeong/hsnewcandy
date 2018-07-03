@@ -37,8 +37,7 @@ public class TempController {
 		
 		ResponseEntity<byte[]> result = 
 				new ResponseEntity<>(baos.toByteArray(),headers,
-						HttpStatus.OK);
-		
+						HttpStatus.OK);		
 		
 		return result;
 	}

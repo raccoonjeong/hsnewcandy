@@ -1,5 +1,9 @@
 package org.candy.controller;
 
+import org.candy.domain.Criteria;
+import org.candy.domain.ReviewDTO;
+import org.candy.domain.ReviewVO;
+import org.candy.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,32 +16,25 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.candy.domain.Criteria;
-import org.candy.domain.ReplyDTO;
-import org.candy.domain.ReplyVO;
-import org.candy.mapper.ReplyMapper;
-import org.candy.service.ReplyService;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/replies/*")
+@RequestMapping("/reviews/*")
 @Log4j
-public class ReplyController {
+public class ReviewController {
 	
 	@Setter(onMethod_= {@Autowired})
-	private ReplyService service;
-	
-
+	private ReviewService service;
 	
 
 	@PostMapping("/new")
-	public ResponseEntity<String> register(@RequestBody ReplyVO vo){
+	public ResponseEntity<String> register(@RequestBody ReviewVO vo){
 		
 		if(vo.getOrd()==1) {
-			service.rereply(vo);
+			service.rereview(vo);
 		}
 		else {
 			service.create(vo);
@@ -48,10 +45,10 @@ public class ReplyController {
 	}
 	
 	@GetMapping("/{rno}")
-	public ResponseEntity<ReplyVO> read(@PathVariable("rno")Integer rno){
+	public ResponseEntity<ReviewVO> read(@PathVariable("rno")Integer rno){
 		
 		
-		return new ResponseEntity<ReplyVO>(service.read(rno), HttpStatus.OK);
+		return new ResponseEntity<ReviewVO>(service.read(rno), HttpStatus.OK);
 		
 		
 	}
@@ -66,7 +63,7 @@ public class ReplyController {
 		log.info(service.haveChild(rno)>0);
 		if (ord == 0 && service.haveChild(rno)>0) {		
 			log.info("have child");
-			msg =  service.deleteParentReply(rno) == 1?"success":"fail";
+			msg =  service.deleteParentReview(rno) == 1?"success":"fail";
 		}
 		else {
 			log.info("not have child");
@@ -82,12 +79,12 @@ public class ReplyController {
 	
 	@PutMapping("/{rno}")
 	public ResponseEntity<String> update(
-			@PathVariable("rno")Integer rno, @RequestBody ReplyVO vo){
+			@PathVariable("rno")Integer rno, @RequestBody ReviewVO vo){
 		
 		vo.setRno(rno);
 		
 		String msg =  service.update(vo) == 1?"success":"fail";
-		//¸Þ¼Òµå¿¡ @RequestBody°¡ Àû¿ëµÈ °æ¿ì, ¸®ÅÏ °´Ã¼¸¦ JSONÀÌ³ª XML°ú °°Àº ¾Ë¸ÂÀº ÀÀ´äÀ¸·Î  º¯È¯
+		//ï¿½Þ¼Òµå¿¡ @RequestBodyï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ JSONï¿½Ì³ï¿½ XMLï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ë¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½È¯
 		return new ResponseEntity<String>(msg, HttpStatus.OK);
 		
 		
@@ -95,14 +92,14 @@ public class ReplyController {
 	
 	
 	@GetMapping("/list/{bno}/{page}")
-	public ResponseEntity<ReplyDTO> list(@PathVariable("page")Integer page,
+	public ResponseEntity<ReviewDTO> list(@PathVariable("page")Integer page,
 			@PathVariable("bno")Integer bno){
 		
 		
 		Criteria cri = new Criteria(page);
 		
 			
-		return new ResponseEntity<ReplyDTO>(service.list(cri, bno), HttpStatus.OK);
+		return new ResponseEntity<ReviewDTO>(service.list(cri, bno), HttpStatus.OK);
 	
 	}
 	

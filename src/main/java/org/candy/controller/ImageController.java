@@ -38,7 +38,7 @@ import net.coobird.thumbnailator.Thumbnailator;
 @Controller
 @RequestMapping("/up/*")
 @Log4j
-public class UploadController {
+public class ImageController {
 	
 	@Setter(onMethod_= {@Autowired})
 	private UploadService service;
@@ -147,10 +147,10 @@ public class UploadController {
 		log.info("deleteFile...........");
 		log.info("fullname:...."+fullName);
 		
-		//µðºñ»èÁ¦
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		service.delete(fullName); 
 		
-		//½ÇÁ¦»èÁ¦
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		new File("C:\\zzz\\upload\\"+fullName).delete();
 		new File("C:\\zzz\\upload\\"+"s_"+fullName).delete();
 		

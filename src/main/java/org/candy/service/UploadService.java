@@ -1,11 +1,8 @@
 package org.candy.service;
 
-import java.util.List;
-
-import org.apache.ibatis.annotations.Param;
-import org.candy.domain.Criteria;
 import org.candy.domain.AttachDTO;
 import org.candy.domain.AttachVO;
+import org.candy.domain.Criteria;
 
 
 public interface UploadService {

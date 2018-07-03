@@ -1,7 +1,7 @@
 package org.candy.controller;
 
 import org.candy.domain.UserVO;
-import org.candy.service.MemberService;
+import org.candy.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +27,7 @@ public class LoginController {
 	private PasswordEncoder encoder;
 	
 	@Setter(onMethod_= {@Autowired})
-	private MemberService service;
+	private UserService service;
 	
 	@PostMapping("/myLogin")
 	public void loginInput(String error, Model model ) {
@@ -44,18 +44,12 @@ public class LoginController {
 	public void getLogin() {
 		
 	}
-
-	
-	@GetMapping("/myLogout")
-	public void logout() {
-		
-	}
-	
+/*	
 	@GetMapping("/accessDenied")
 	public void accessDenied() {
 		
 		
-	}	
+	}*/	
 	@GetMapping("/join")
 	public void getJoin() {
 		

@@ -66,7 +66,7 @@ font-weight: bold;
 	margin-left: 33%;
 }
 
-.bno {
+.fno {
 	font-size: 70%
 }
 
@@ -189,7 +189,7 @@ text-align: left;
 					</colgroup>
 
 					<thead>
-						<th>Bno</th>
+						<th>Fno</th>
 						<th>Title</th>
 						<th style="text-align: right;">Views</th>
 						<th style="text-align: right;">Writer</th>
@@ -205,11 +205,11 @@ text-align: left;
 
 						<c:forEach items="${list}" var="vo">
 							<tr>
-								<td class="bno"><c:out value="${vo.bno}" /></td>
+								<td class="fno"><c:out value="${vo.fno}" /></td>
 								
-								<td class="box" id="toread" data-bno="${vo.bno}">
+								<td class="box" id="toread" data-fno="${vo.fno}">
 								<span class="title"> <c:out value="${vo.title}" /></span>
-								<span class="count">[<c:out value = "${vo.recnt }"></c:out>]</span>
+								<span class="count">[<c:out value = "${vo.reviewcnt}"></c:out>]</span>
 									<span class="ico"> 
 										<c:if test="${vo.checkNew()}">
 											<img src="/resources/images/new.jpg">
@@ -217,9 +217,9 @@ text-align: left;
 									</span>
 									
 								</td>
-							<td style="text-align: right">
-<c:out value="${vo.viewcnt}" />
-</td>
+								<%-- <td style="text-align: right">
+									<c:out value="${vo.viewcnt}" />
+								</td> --%>
 								<td style="text-align: right">
 									<c:out value="${vo.writer}" />
 								</td>
@@ -330,10 +330,10 @@ text-align: left;
 
 			$(".box").on("click",function(e) {
 
-				var bno = $(this).attr("data-bno");
+				var fno = $(this).attr("data-fno");
 				var link = '${cri.makeSearch(cri.page)}';
 
-				self.location = "/board/read"+ link + "&bno=" + bno;
+				self.location = "/board/read"+ link + "&fno=" + fno;
 			});
 
 			console.log("history:" + history.state);
@@ -354,12 +354,10 @@ text-align: left;
 				}
 			history.replaceState({}, null, null);
 			
-$(".lOutbtn").on("click", function(e) {
+			$(".lOutbtn").on("click", function(e) {
 				
-				alert("로그아웃 되었습니다.");
-				
+				alert("로그아웃 되었습니다.");				
 			});
-
 		});
 	</script>
 

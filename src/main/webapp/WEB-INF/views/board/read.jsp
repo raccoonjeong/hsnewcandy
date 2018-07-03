@@ -75,15 +75,12 @@
 	text-align: center;
 }
 .pagination{
-        display: block;
-        
-        }
+        display: block;        
+        }        
 
-        
-
-        p {
-            color: #000;
-        }
+ p {
+          color: #000;
+      }
 .mask {
             width: 100%;
             height: 100%;
@@ -283,7 +280,7 @@ text-align: center;
 					<table class="alt">
 						<thead>
 							<tr>
-								<th>No.<c:out value="${vo.bno}" /></th>
+								<th>No.<c:out value="${vo.fno}" /></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -325,7 +322,7 @@ text-align: center;
 						<ul class="actions">
 							<li><input type="button" class="special list" value="List"></li>
 							<li><input type="button" class="special modify"
-								data-bno="${vo.bno}" value="Modify" /></li>
+								data-fno="${vo.fno}" value="Modify" /></li>
 							<li><input type="button" class="special remove" value="Remove" /></li>
 						</ul>
 					</div>
@@ -349,7 +346,6 @@ text-align: center;
 
     </div>
     <div class="pagination">
-
 </div>
 </div>
 
@@ -404,7 +400,7 @@ text-align: center;
 
 	
 	<form role="form" action="remove" method="post">
-		<input type="hidden" name="bno" value="${vo.bno}">
+		<input type="hidden" name="fno" value="${vo.fno}">
 
 	<input type="hidden" name="keyword" value="${cri.keyword}">
 			 <input type="hidden" name="page" value="${cri.page}">
@@ -453,7 +449,7 @@ text-align: center;
 			
 			
 			var replyCnt = ${vo.recnt};
-			console.log("replyCnt",replyCnt);
+			console.log("reviewCnt",reviewCnt);
 		    	/* 목록가기 */
 					$(".actions").on("click",".list", function(e) {
 						self.location="/board/list${cri.makeSearch(cri.page)}";
@@ -464,7 +460,7 @@ text-align: center;
 				
 					$(".actions").on("click",".remove", function(e) {
 						
-						if(replyCnt>0){
+						if(reviewCnt>0){
 							alert("댓글이 달린 게시물을 삭제할 수 없습니다.");
 							return;
 						}
@@ -484,10 +480,10 @@ text-align: center;
 					
 				/* 수정  */
 					$(".actions").on("click",".modify", function(e) {
-						var bno = $(this).attr("data-bno");
+						var fno = $(this).attr("data-fno");
 						alert("첨부파일이 다 삭제되는데도 수정하실건가요?");
 						
-						self.location="/board/modify${cri.makeSearch(cri.page)}&bno="+bno;
+						self.location="/board/modify${cri.makeSearch(cri.page)}&fno="+fno;
 					});
 					
 					var msg = '<c:out value="${msg}"/>';
@@ -517,8 +513,8 @@ text-align: center;
         var mbtn = $(".mbtn");
         var dbtn = $(".dbtn");
         var listUL = $(".listDiv");
-        var bno = ${vo.bno};
-        var replyPage = 1;
+        var fno = ${vo.fno};
+        var reviewPage = 1;
         var gno=1;
 
         var csrfToken = "${_csrf.token}";
@@ -532,11 +528,11 @@ text-align: center;
         	
         }
 
-        function loadList(bno, page) {
-           replyPage = page || 1;
-            /* var bno = bno || 1; */
-            $.getJSON("/replies/list/" + bno + "/" + page + ".json", function (data) {
-                console.log(data.replyCnt);
+        function loadList(fno, page) {
+           reviewPage = page || 1;
+            /* var fno = fno || 1; */
+            $.getJSON("/reviews/list/" + fno + "/" + page + ".json", function (data) {
+                console.log(data.reviewCnt);
                 console.log(data.list);
                 var str = "";
                 $(data.list).each(function (idx, data) {
@@ -571,26 +567,26 @@ text-align: center;
                     	
                 });
                 listUL.html("<hr>"+str);
-                showReplyPage(replyPage, data.replyCnt);
-                console.log("로드리스트 페이지는"+replyPage);
+                showReviewPage(replyPage, data.reviewCnt);
+                console.log("로드리스트 페이지는"+reviewPage);
             })
         }
-        loadList(bno, 1);
+        loadList(fno, 1);
 
-        function saveReplies(ord, inputgno) {
+        function saveReviews(ord, inputgno) {
 
         	console.log("inputval"+inputContent.val());
         	console.log("inputval"+reContent.val());     		
         		 if(ord == 0){
         			 
         			 if(inputContent.val()!="" && inputReplyer.val()!=""){       				 
-        				var data = {bno: bno, rcontent: inputContent.val(), replyer: inputReplyer.val(), ord:0};
+        				var data = {fno: fno, rcontent: inputContent.val(), replyer: inputReplyer.val(), ord:0};
         			}else {
                 		alert("내용을 똑바로 입력하세요 ㅡ_ㅡ!!"); return;
                 	}
         		 }else{
         			if(reContent.val()!="" && reReplyer.val()!=""){
-        				var data = {bno: bno, rcontent: reContent.val(), replyer: reReplyer.val(),ord:1, gno: inputgno};
+        				var data = {fno: fno, rcontent: reContent.val(), replyer: reReplyer.val(),ord:1, gno: inputgno};
         			}else {
         	        		alert("내용을 똑바로 입력하세요 ㅡ_ㅡ!!"); return;
         	        	}
@@ -600,7 +596,7 @@ text-align: center;
         		 
             	$.ajax({
                	 type: 'post',
-               	 url: "/replies/new",
+               	 url: "/reviews/new",
                	 headers: {
                	     "Content-type": "application/json"
                	 },
@@ -608,7 +604,7 @@ text-align: center;
                	 data: JSON.stringify(data),
                	 success: function (result) {
                	     
-                     loadList(bno, 1);
+                     loadList(fno, 1);
                      alert("등록이 완료되었습니다.");
                      inputContent.val("");
                      inputReplyer.val("");
@@ -618,23 +614,23 @@ text-align: center;
                 }
             });      		
         	
-            console.log("세이브리플 페이지는"+replyPage);
+            console.log("세이브리플 페이지는"+reviewPage);
         }
 
-        function readReplies(rno, page) {
+        function readReviews(rno, page) {
 
-            $.getJSON("/replies/" + rno + ".json", function (data) {
+            $.getJSON("/reviews/" + rno + ".json", function (data) {
                 
-				var replyPage = page;
+				var reviewPage = page;
                 modifyContent.val(data.rcontent);
                 modifyReplyer.val(data.replyer);
                 mbtn.attr("data-rno", rno);
                 dbtn.attr("data-rno", rno);
             });
-            console.log("리드 리플 페이지는"+replyPage);
+            console.log("리드 리플 페이지는"+reviewPage);
         }
 
-        function modifyReplies() {
+        function modifyReviews() {
             var rno = mbtn.attr("data-rno");
             var data = {rcontent: modifyContent.val(), replyer: modifyReplyer.val()};
             
@@ -642,7 +638,7 @@ text-align: center;
             
             $.ajax({
                 type: 'put',
-                url: "/replies/" + rno,
+                url: "/reviews/" + rno,
                 headers: {
                     "Content-type": "application/json"
                 },
@@ -650,17 +646,17 @@ text-align: center;
                 data: JSON.stringify(data),
                 success: function (result) {
                     
-                    loadList(bno, replyPage);
+                    loadList(fno, reviewPage);
                     modalLayer.fadeOut("slow");
                 }
             });
         }
 
-        function deleteReplies(rno,ord) {
+        function deleteReviews(rno,ord) {
         	
             $.ajax({
                 type: 'delete',
-                url: "/replies/" + rno +"/" + ord,
+                url: "/reviews/" + rno +"/" + ord,
                 headers: {
                     "Content-type": "application/json"
                 },
@@ -668,7 +664,7 @@ text-align: center;
                 
                 success: function (result) {
                     
-                    loadList(bno, replyPage);
+                    loadList(fno, reviewPage);
                 }
             });
         }
@@ -676,9 +672,9 @@ text-align: center;
         $(".pagination").on("click", "a", function (e) {
             e.preventDefault();
             console.log("hi~~~");
-            replyPage = $(this).attr("href");
+            reviewPage = $(this).attr("href");
 
-            loadList(bno, replyPage);
+            loadList(fno, reviewPage);
 
         });
         
@@ -691,7 +687,7 @@ text-align: center;
             var ord = $(this).attr("data-ord");
 
             if (confirm(rno + "번 글을 삭제하시겠습니까?")) {
-                deleteReplies(rno,ord);
+                deleteReviews(rno,ord);
                
             }
 
@@ -700,7 +696,7 @@ text-align: center;
 
 
         rbtn.on("click", function (e) {
-            saveReplies(0);
+            saveReviews(0);
         });
         
       
@@ -715,10 +711,10 @@ text-align: center;
         var reMarginLeft = reModalCont.outerWidth() / 2;
         var reMarginTop = reModalCont.outerHeight() / 2;
         
-        var replynumber;
+        var reviewNumber;
         
         listUL.on("click",".rerebtn", function(e){
-         replynumber = $(this).attr("data-rno");
+         reviewNumber = $(this).attr("data-rno");
        	 reModalLayer.fadeIn("slow");
        	 reModalCont.css({"margin-top": -reMarginTop, "margin-left": -reMarginLeft});
          $(this).blur();
@@ -729,7 +725,7 @@ text-align: center;
        });
         $(".reRegister").on("click", function(e){
        		
-        	saveReplies(1,replynumber);
+        	saveReviews(1,reviewNumber);
         	reModalLayer.fadeOut("slow");
      
    		});
@@ -738,7 +734,7 @@ text-align: center;
         
         listUL.on("click", "#modibtn", function (e) {
             var rno = $(this).attr("data-rno");
-            readReplies(rno, replyPage);
+            readReviews(rno, reviewPage);
             modalLayer.fadeIn("slow");
             modalCont.css({"margin-top": -marginTop, "margin-left": -marginLeft});
             $(this).blur();
@@ -758,14 +754,14 @@ text-align: center;
         });
 
         mbtn.on("click", function (e) {
-            modifyReplies();
+            modifyReviews();
             alert("수정되었습니다.");
         });
         
-        var bno = ${vo.bno};
+        var fno = ${vo.fno};
         var template = Handlebars.compile($("#templateAttach").html());
         
-        $.getJSON("/board/getAttach/"+bno, function(list){
+        $.getJSON("/board/getAttach/"+fno, function(list){
         	$(list).each(function(){
         		
         		

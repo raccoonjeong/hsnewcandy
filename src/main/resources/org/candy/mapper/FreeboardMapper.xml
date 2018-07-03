@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.candy.mapper.FreeboardMapper">
+
+	<insert id="register">
+	insert into tbl_freeboard (title, content, writer) 
+	values (#{title},#{content},#{writer}); 
+	</insert>
+
+	<update id="modify">
+	update tbl_freeboard set title=#{title}, content=#{content}, updatedate=now() 
+	where bno=#{bno};
+	</update>
+	
+	<select id="read" resultType="org.candy.domain.FreeboardVO">
+		select * from tbl_freeboard where bno = #{bno};
+	</select>
+
+<sql id="search">
+		<where>
+			<if test="arr!= null">
+				<foreach collection="arr" item="target" open="(" close=")"
+					separator="OR">
+					<if test="target eq 't'.toString()"> title like concat('%',#{keyword},'%') </if>
+					<if test="target eq 'c'.toString()"> content like concat('%',#{keyword},'%') </if>
+					<if test="target eq 'w'.toString()"> writer like concat('%',#{keyword},'%') </if>
+				</foreach> 
+			</if>
+			</where>
+	</sql>
+	
+	<select id="list" resultType="org.candy.domain.FreeboardVO">
+		select bno, title, content, writer,regdate, updatedate, replycnt ,viewcnt
+		from tbl_freeboard
+		<include refid="search"></include>
+		order by bno desc
+		limit #{skip}, 10
+	</select>
+
+	<select id="getTotal" resultType="int">
+		select count(*) from tbl_freeboard
+		<include refid="search"></include>
+	</select>
+	
+
+</mapper>

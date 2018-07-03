@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class ReviewVO {
 
-	private Integer fno,rno, gno, ord;
+	private Integer fno, rno, gno, ord;
 	private String rcontent, replyer;
 	private Date regdate, updatedate;
 

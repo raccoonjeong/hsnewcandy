@@ -8,8 +8,10 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 import org.candy.domain.UserVO;
-import org.candy.mapper.MemberMapper;
+import org.candy.mapper.UserMapper;
+
 
 import lombok.Data;
 import lombok.Setter;
@@ -20,7 +22,7 @@ import lombok.extern.log4j.Log4j;
 public class CustomUserDetailsService implements UserDetailsService {
 
 	@Setter(onMethod_={@Autowired})
-	private MemberMapper mapper;
+	private UserMapper mapper;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

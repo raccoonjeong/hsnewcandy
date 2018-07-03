@@ -179,7 +179,7 @@ text-align: center;
 							</ul>
 						</div>
 					</div>
-					<input type="hidden" name="bno" value="${vo.bno}">
+					<input type="hidden" name="fno" value="${vo.fno}">
 					<input type="hidden" name="keyword" value="${cri.keyword}">
 					<input type="hidden" name="page" value="${cri.page}">
 					<input type="hidden" name="type" value="${cri.type}">

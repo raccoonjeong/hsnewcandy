@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.candy.mapper.UserMapper">
+	<!-- 게시물 조회할때 댓글의 데이터까지 같이 가져오는 기능으로 이해하기 -->
+	<resultMap type="org.candy.domain.UserVO" id="userMap">
+		<id property="uid" column="uid" />
+		<result property="upw" column="upw" />
+		<result property="uname" column="uname" />
+		<result property="email" column="email" />
+		<result property="phone_number" column="phone_number" />
+		<result property="role" column="role" />
+		<collection property="authList" resultMap="authMap"></collection>
+	</resultMap>
+
+	<resultMap type="org.candy.domain.UserAuthVO" id="authMap">
+		<result property="uid" column="uid" />
+		<result property="auth" column="auth" />
+	</resultMap>
+
+	<select id="read" resultMap="userMap">
+
+		select u.uid, upw, uname, email, phone_number, role, auth 
+		from
+		tbl_user u inner join tbl_user_auth auth
+		on u.uid = auth.uid
+		where u.uid=#{uid}
+
+	</select>
+	
+	<insert id="create">
+		insert into tbl_user (uid, upw, uname, email, phone_number, role) 
+		values (#{uid},#{upw},#{uname},#{email},#{phone_number},#{role})
+	</insert>
+	
+	<insert id="createAuth">
+		insert into tbl_user_auth (uid, auth) values (#{uid}, #{auth})
+	</insert>
+	
+	<update id="updatePassword" >
+		update tbl_user set upw = #{eupw} where uid= #{uid}
+	</update>
+	
+	<select id="idcheck" parameterType="String" resultType="Integer">
+		select count(*) from tbl_user 
+		where uid = #{uid}
+	</select>
+
+</mapper>

@@ -1,15 +1,13 @@
 package org.candy.service;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
+import org.candy.domain.Criteria;
+import org.candy.domain.TruckVO;
+import org.candy.mapper.BoardMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.candy.domain.TruckVO;
-import org.candy.domain.Criteria;
-import org.candy.mapper.BoardMapper;
 
 import lombok.Setter;
 @Service
@@ -76,10 +74,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public int updateReplyCnt(Integer fno, int amount) {
-
-		
-		return mapper.updateReplyCnt(fno,amount);
+	public int updateReviewCnt(Integer fno, int amount) {		
+		return mapper.updateReviewCnt(fno,amount);
 		
 	}
 
@@ -94,13 +90,5 @@ public class BoardServiceImpl implements BoardService{
 
 		return mapper.getAttach(fno);
 	}
-
-
-
-
-	
-
-
-
 	
 }

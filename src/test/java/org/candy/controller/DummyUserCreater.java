@@ -9,7 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.candy.domain.UserAuthVO;
 import org.candy.domain.UserVO;
-import org.candy.mapper.MemberMapper;
+import org.candy.mapper.UserMapper;
 
 import lombok.extern.log4j.Log4j;
 
@@ -23,7 +23,7 @@ public class DummyUserCreater {
 	private PasswordEncoder encoder;
 	
 	@Autowired
-	private MemberMapper mapper;
+	private UserMapper mapper;
 	
 	@Test
 	public void testRead() {

@@ -6,19 +6,19 @@
 <mapper namespace="org.candy.mapper.BoardMapper">
 
 <select id="getAttach" resultType="string">
-select fullName from tbl_aupload where bno = #{bno} order by regdate
+select fullName from tbl_attach where fno = #{fno} order by regdate
 </select>
 
 <delete id = "deleteAttach">
-delete from tbl_aupload where bno=#{bno}
+delete from tbl_attach where fno=#{fno}
 </delete>
 
 <insert id="replaceAttach">
-insert into tbl_aupload(fullName,bno) values (#{fullName},#{bno})
+insert into tbl_attach(fullName, fno) values (#{fullName}, #{fno})
 </insert>
 
 <insert id="addAttach">
- insert into tbl_aupload (fullName,bno) values (#{fullName},last_insert_id()) </insert>
+ insert into tbl_attach (fullName, fno) values (#{fullName}, last_insert_id()) </insert>
 
 	<sql id="search">
 		<where>
@@ -34,41 +34,42 @@ insert into tbl_aupload(fullName,bno) values (#{fullName},#{bno})
 	</sql>
 		
 <update id="updateReplyCnt">
-update tbl_aboard set recnt = recnt+#{amount} where bno=#{bno}
+	update tbl_truck set reviewcnt = reviewcnt + #{amount} where fno=#{fno}
 </update>
 
-	<select id="list" resultType="org.candy.domain.BoardVO">
-		select bno,title,writer,regdate,updatedate,recnt,viewcnt
-		from tbl_aboard
+	<select id="list" resultType="org.candy.domain.TruckVO">
+		select fno, title, writer, open_check, lat, lng, regdate, updatedate, reviewcnt, likecnt 
+		from tbl_truck
 		<include refid="search"></include>
-		order by bno desc
-		limit #{skip},10
+		order by fno desc
+		limit #{skip}, 10
 	</select>
 
 	<select id="getTotal" resultType="int">
-		select count(*) from tbl_aboard
+		select count(*) from tbl_truck
 		<include refid="search"></include>
 	</select>
 	
 	<insert id="register">
-	insert into tbl_aboard (title,content,writer) values (#{title},#{content},#{writer}); 
+	insert into tbl_truck (title, content, writer, open_check, lat, lng) 
+	values (#{title},#{content},#{writer}, #{open_check}, #{lat}, #{lng}); 
 	</insert>
 
-	<select id="read" resultType="org.candy.domain.BoardVO">
-		select * from tbl_aboard where bno = #{bno};
+	<select id="read" resultType="org.candy.domain.TruckVO">
+		select * from tbl_truck where fno = #{fno};
 	</select>
 	
 	<delete id="remove">
-	delete from tbl_aboard where bno = #{bno};
+	delete from tbl_truck where fno = #{fno};
 	</delete>
 
 	
 	<update id="modify">
-	update tbl_aboard set title=#{title}, content=#{content}, updatedate=now() where bno=#{bno};
+	update tbl_truck set title=#{title}, content=#{content}, open_check=#{open_check}, lat=#{lat}, lng=#{lng}, updatedate=now() where fno=#{fno};
 	</update>
 
 
-<update id="updateViewCnt">
+<!-- <update id="updateViewCnt">
         update tbl_aboard set viewcnt = viewcnt + 1 where bno = #{bno}
-    </update>
+    </update> -->
 </mapper>

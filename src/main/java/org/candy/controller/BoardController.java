@@ -25,8 +25,7 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/board/*")
 @Log4j
 public class BoardController {
-	
-	
+	//±ê Á¦¹ß ±×¸¸
 	@Setter(onMethod_= {@Autowired})
 	private BoardService service;
 	

@@ -157,9 +157,11 @@ text-align: center;
 						</div>
 
 						<div class="6u 12u$(xsmall)">
+
 						<input type="text" name="writer" id="writer" value="user01"/>
 							<%-- <input type="text" name="writer" id="writer" value='<sec:authentication property="principal.username"/>' 
 							readonly="readonly"	placeholder="writer" /> --%>
+
 						</div>
 
 						<div class="12u$">
@@ -174,7 +176,7 @@ text-align: center;
 					<div class="uploadedList">
 					
 					</div>
-					
+
 						<div class="12u$">
 							<ul class="actions">
 								<li><input type="button" class="special list" value="List"></li>
@@ -194,7 +196,7 @@ text-align: center;
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous"></script>
-	
+
 		
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script id="template" type="text/x-handlebars-template">
@@ -209,7 +211,7 @@ text-align: center;
 <script>
 
 $(document).ready(function(){
-	
+
 	
 	
 	var template = Handlebars.compile($("#template").html());

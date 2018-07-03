@@ -205,21 +205,20 @@ text-align: left;
 
 						<c:forEach items="${list}" var="vo">
 							<tr>
-								<td class="bno"><c:out value="${vo.bno}" /></td>
-								
+								<td class="bno"><c:out value="${vo.bno}" /></td>								
 								<td class="box" id="toread" data-bno="${vo.bno}">
 								<span class="title"> <c:out value="${vo.title}" /></span>
-							<%-- 	 <span class="count">[<c:out value = "${vo.replycnt}"></c:out>]</span>
+							 	<span class="count">[<c:out value = "${vo.replycnt}"></c:out>]</span>
 									<span class="ico"> 
 										<c:if test="${vo.checkNew()}">
 											<img src="/resources/images/new.jpg">
 										</c:if>
-									</span> --%>
+									</span> 
 									
 								</td>
-								<%-- <td style="text-align: right">
+								 <td style="text-align: right">
 									<c:out value="${vo.viewcnt}" />
-								</td> --%>
+								</td> 
 								<td style="text-align: right">
 									<c:out value="${vo.writer}" />
 								</td>

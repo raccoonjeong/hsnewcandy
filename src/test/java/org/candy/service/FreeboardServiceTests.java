@@ -1,7 +1,11 @@
 package org.candy.service;
 
 
+
 import org.candy.domain.FreeboardVO;
+
+import org.candy.domain.Criteria;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,22 +15,25 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
+
 @Log4j
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml",
 	"file:src/main/webapp/WEB-INF/spring/security-context.xml"})
+
 public class FreeboardServiceTests {
 	
 	@Setter(onMethod_= {@Autowired})
 	private FreeboardService service;
 	
+
 	@Test
 	public void register() {
 		log.info("Service register Test");
 		for(int i = 0; i<10; i++) {
 			FreeboardVO vo = new FreeboardVO();
-			vo.setTitle("ÀÚÀ¯°Ô½ÃÆÇÁ¦¸ñ"+i);
-			vo.setContent("ÀÚÀ¯°Ô½ÃÆÇ³»¿ë"+i);
+			vo.setTitle("ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"+i);
+			vo.setContent("ï¿½ï¿½ï¿½ï¿½Ô½ï¿½ï¿½Ç³ï¿½ï¿½ï¿½"+i);
 			vo.setWriter("user01");
 			service.register(vo);
 		}
@@ -36,10 +43,19 @@ public class FreeboardServiceTests {
 		log.info("Service modify Test");
 		FreeboardVO vo = new FreeboardVO();
 		vo.setBno(100);
-		vo.setTitle("¼öÁ¤Á¦¸ñ100");
-		vo.setContent("¼öÁ¤³»¿ë100");
+		vo.setTitle("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½100");
+		vo.setContent("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½100");
 	
 		service.modify(vo);
 		
 	}
+
+	
+	@Test
+	public void getList() {
+		Criteria cri = new Criteria(3);
+		log.info(service.list(cri));
+	}
+
+
 }

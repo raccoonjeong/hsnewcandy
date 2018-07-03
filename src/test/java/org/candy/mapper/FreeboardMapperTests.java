@@ -1,12 +1,17 @@
 package org.candy.mapper;
 
 
+
 import org.candy.domain.FreeboardVO;
+
+import org.candy.domain.Criteria;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -15,18 +20,20 @@ import lombok.extern.log4j.Log4j;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration({"file:src/main/webapp/WEB-INF/spring/root-context.xml",
 	"file:src/main/webapp/WEB-INF/spring/security-context.xml"})
+
 public class FreeboardMapperTests {
 	
 	@Setter(onMethod_= {@Autowired})
 	private FreeboardMapper mapper;
 	
 	@Test
+
 	public void registerTest() {
 		
 		for(int i = 0; i<100; i++) {
 			FreeboardVO vo = new FreeboardVO();
-			vo.setTitle("ÀÚÀ¯°Ô½ÃÆÇÁ¦¸ñ"+i);
-			vo.setContent("ÀÚÀ¯°Ô½ÃÆÇ³»¿ë"+i);
+			vo.setTitle("Ã€ÃšÃ€Â¯Â°Ã”Â½ÃƒÃ†Ã‡ÃÂ¦Â¸Ã±"+i);
+			vo.setContent("Ã€ÃšÃ€Â¯Â°Ã”Â½ÃƒÃ†Ã‡Â³Â»Â¿Ã«"+i);
 			vo.setWriter("user01");
 			log.info(mapper.register(vo));
 		}
@@ -36,8 +43,8 @@ public class FreeboardMapperTests {
 		
 		FreeboardVO vo = new FreeboardVO();
 		vo.setBno(2);
-		vo.setTitle("¼öÁ¤Á¦¸ñ1");
-		vo.setContent("¼öÁ¤³»¿ë1");
+		vo.setTitle("Â¼Ã¶ÃÂ¤ÃÂ¦Â¸Ã±1");
+		vo.setContent("Â¼Ã¶ÃÂ¤Â³Â»Â¿Ã«1");
 	
 		log.info(mapper.modify(vo));	
 	}
@@ -46,4 +53,26 @@ public class FreeboardMapperTests {
 		
 		log.info(mapper.read(100));
 	}
+
+	public void getList() {
+		Criteria cri = new Criteria(1);
+		log.info(mapper.list(cri));
+	}
+
+	@Test
+	public void getTotal() {
+		Criteria cri = new Criteria();
+		log.info(mapper.getTotal(cri));
+	}
+	
+	@Test
+	public void getSearch() {
+		Criteria cri = new Criteria();
+		cri.setPage(1);
+		cri.setType("t");
+		cri.setKeyword("Ã€ÃšÃ€Â¯");
+		log.info(mapper.list(cri));
+	}
+
+
 }

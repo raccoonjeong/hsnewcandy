@@ -13,7 +13,7 @@ public interface FreeboardMapper {
 
 	public FreeboardVO read(int bno);
 
-  public List<FreeboardVO> list(Criteria cri);
+    public List<FreeboardVO> list(Criteria cri);
 
 	public int getTotal(Criteria cri);
 	

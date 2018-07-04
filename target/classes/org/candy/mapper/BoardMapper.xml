@@ -59,6 +59,12 @@ insert into tbl_attach(fullName, fno) values (#{fullName}, #{fno})
 		select * from tbl_truck where fno = #{fno};
 	</select>
 	
+<<<<<<< Upstream, based on origin/master
+=======
+	
+	
+	
+>>>>>>> bc7a060 0704 commit
 	<delete id="remove">
 	delete from tbl_truck where fno = #{fno};
 	</delete>

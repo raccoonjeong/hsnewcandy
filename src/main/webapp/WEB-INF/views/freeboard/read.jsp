@@ -467,6 +467,7 @@ text-align: center;
 			marker.setMap(map);
 			
 			
+			
 			var replyCnt = ${vo.recnt};
 			console.log("reviewCnt",reviewCnt);
 		    	/* 목록가기 */

@@ -98,27 +98,19 @@ font-weight: bold;
 	display: inline-block;
 	width: 80%;
 }
-
-
 #header .logo .loginbtn{
 float: right;
 display: inline-block;
 text-align: right;
 }
-
 #header .logo .loginbtn .logOutbtn .btnlogOut1{
-
 float: left;
 margin-right: 10px;
-
 }
-
 #header .logo .loginbtn .logOutbtn .btnlogOut2{
 display: inline-block;
 text-align: left;
 }
-
-
 </style>
 </head>
 <body class="subpage">
@@ -162,6 +154,8 @@ text-align: left;
 			<li><a href="/up/ajax">Image gallery</a></li>
 		</ul>
 	</nav>
+
+
 	<!-- One -->
 	<section id="One" class="wrapper style3">
 		<div class="inner">

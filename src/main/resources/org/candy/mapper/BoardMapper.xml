@@ -59,6 +59,9 @@ insert into tbl_attach(fullName, fno) values (#{fullName}, #{fno})
 		select * from tbl_truck where fno = #{fno};
 	</select>
 	
+	
+	
+	
 	<delete id="remove">
 	delete from tbl_truck where fno = #{fno};
 	</delete>

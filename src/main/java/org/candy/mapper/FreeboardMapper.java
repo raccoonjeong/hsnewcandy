@@ -19,5 +19,4 @@ public interface FreeboardMapper {
 	
 	public List<FreeboardVO> searchList(Criteria cri);
 
-
 }

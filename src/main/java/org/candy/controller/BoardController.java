@@ -32,7 +32,7 @@ public class BoardController {
 	@GetMapping("/list")
 	public void getList(@ModelAttribute("cri")Criteria cri,Model model) throws Exception{
 
-		//0706-1
+		//0710
 		log.info("list...zzz");
 		model.addAttribute("list",service.list(cri));
 		

@@ -17,6 +17,5 @@ public interface FreeboardMapper {
 
 	public int getTotal(Criteria cri);
 	
-	public List<FreeboardVO> searchList(Criteria cri);
-
+	
 }

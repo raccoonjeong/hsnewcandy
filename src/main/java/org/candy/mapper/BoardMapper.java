@@ -12,8 +12,6 @@ public interface BoardMapper {
 
 	public int getTotal(Criteria cri);
 	
-	public List<TruckVO> searchList(Criteria cri);
-	
 	public int register(TruckVO vo);
 			
 	public TruckVO read(int fno);

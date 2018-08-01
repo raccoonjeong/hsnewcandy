@@ -84,7 +84,7 @@ public class ReviewController {
 		vo.setRno(rno);
 		
 		String msg =  service.update(vo) == 1?"success":"fail";
-		//�޼ҵ忡 @RequestBody�� ����� ���, ���� ��ü�� JSON�̳� XML�� ���� �˸��� ��������  ��ȯ
+		
 		return new ResponseEntity<String>(msg, HttpStatus.OK);
 		
 		

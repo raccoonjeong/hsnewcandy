@@ -36,10 +36,10 @@ public class Criteria {
 		return this.type.split("");
 	}
 	
-	public String makeSearch(int page) {
+	public String makeSearch(int page) { //검색조건 유지한 채로 페이징
         if(this.keyword!=null && this.type!=null && this.type!=""&& this.keyword!="") {
         
-        UriComponents uriComponents =
+        UriComponents uriComponents = //물음표 등의 토큰 자동생성
                 UriComponentsBuilder.newInstance().queryParam("page", page).
                 queryParam("type", this.type).
                 queryParam("keyword", encoding(this.keyword)).build();
@@ -53,7 +53,7 @@ public class Criteria {
     }
 	
     
-    private String encoding(String keyword) {
+    private String encoding(String keyword) { //키워드 한글일때 문제를 막기위해 인코딩.. 익스플로러에서는 한글로 파라미터를 못받는다.
         if(keyword == null || keyword.trim().length()==0) {
             return "";
         }

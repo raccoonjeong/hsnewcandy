@@ -190,7 +190,7 @@ text-align: left;
 						<th style="text-align: right;">Regdate</th>
 						</tr>
 					<tbody>
-
+					<!-- 검색결과가 없거나 보여줄 데이터가 없는 경우 내용없음 출력 -->
 						<c:if test="${fn:length(list)==0 }">
 							<tr>
 								<td colspan="4" style="text-align: center">내용없음</td>

@@ -232,6 +232,7 @@ margin-top: 5px
 	<section id="one" class="wrapper style2">
 
 		<div class="inner">
+		<button id="goLink">알림받으러가기</button>
 
 			<div class="grid-style">
 

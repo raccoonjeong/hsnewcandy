@@ -538,7 +538,7 @@ text-align: center;
                 $(data.list).each(function (idx, data) {
                     var regdate = new Date(data.regdate);
                     console.log("ord===",data)
-                    if(data.ord==1){
+                    if(data.ord==1){ //답댓글인경우
                     	str += "<li>" + "<span data-rno = '" + data.rno + "'>"
                     	+"&emsp;"+"<span style='color:crimson'>"+"[Re:]"+"</span>"
                     	+"글쓴이: " +data.replyer+ "<br>"
@@ -548,7 +548,7 @@ text-align: center;
                         +"&nbsp&nbsp"+"<a class=dbtn data-rno = '" + data.rno + "'data-ord = '"+data.ord+"'>삭제</a> "
                         +"날짜 :   "+ formatDate(regdate) + "</div><hr>";
                     	
-                    }else if(data.replyer!=""){
+                    }else if(data.replyer!=""){ //원댓글인경우
                     	str += "<li>" + "<span data-rno = '" + data.rno + "'>"
                     	 +"글쓴이: " +data.replyer+ "<br>"
                     	 +"내용: "+ data.rcontent + "</span></li>"
@@ -557,7 +557,7 @@ text-align: center;
                          +"&nbsp&nbsp"+"<a class=dbtn data-rno = '" + data.rno 
                          + "' data-ord = '"+data.ord+"'>삭제</a> "
                          +"날짜 :   "+ formatDate(regdate) + "</div><hr>";
-                    }else{
+                    }else{ //'삭제된 댓글인 경우'인데 제거예정...
                     	str += "<li>" + "<span data-rno = '" + data.rno + "' style='color:gray'>"
                    	 +"<br>"
                    	 + data.rcontent + "</span></li>"
@@ -577,15 +577,15 @@ text-align: center;
 
         	console.log("inputval"+inputContent.val());
         	console.log("inputval"+reContent.val());     		
-        		 if(ord == 0){
+        		 if(ord == 0){ //원댓글인경우
         			 
-        			 if(inputContent.val()!="" && inputReplyer.val()!=""){       				 
+        			 if(inputContent.val()!="" && inputReplyer.val()!=""){       	 			 
         				var data = {fno: fno, rcontent: inputContent.val(), replyer: inputReplyer.val(), ord:0};
         			}else {
                 		alert("내용을 똑바로 입력하세요 ㅡ_ㅡ!!"); return;
                 	}
-        		 }else{
-        			if(reContent.val()!="" && reReplyer.val()!=""){
+        		 }else{ //답댓글인경우
+        			if(reContent.val()!="" && reReplyer.val()!=""){ //gno는 
         				var data = {fno: fno, rcontent: reContent.val(), replyer: reReplyer.val(),ord:1, gno: inputgno};
         			}else {
         	        		alert("내용을 똑바로 입력하세요 ㅡ_ㅡ!!"); return;

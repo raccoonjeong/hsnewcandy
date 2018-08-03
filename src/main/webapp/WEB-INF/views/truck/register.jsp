@@ -9,14 +9,15 @@
 	<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <html>
 <head>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <title>Hielo by TEMPLATED</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="/resources/css/main.css?ver=1" />
+<link rel="stylesheet" href="/resources/css/main.css?ver=5" />
 
 <style>
 .subpage {
-	background: linear-gradient(120deg, #D3959B, #BFE6BA) fixed
+	
 }
 
 .outer {
@@ -32,7 +33,7 @@
 }
 .fileDrop
 {
-	width: 96.8%;
+	width: 100%;
     height: 100px;
     padding: 20px;
     border: 3px solid #ccc;
@@ -47,7 +48,7 @@
 .uploadedList
 {
 	display:block;
-	width: 96.8%;
+	width: 100%;
     min-height: 220px;
     padding: 20px;
     border: 1px solid #ccc;
@@ -90,6 +91,12 @@ text-align: center;
     display: inline-block;
 
 }
+
+
+#map{
+margin-top : 30px;
+}
+
     
 /* body {
 	background-image: url(/resources/images/bg.jpg);
@@ -127,7 +134,7 @@ text-align: center;
 	<!-- Nav -->
 	<nav id="menu">
 		<ul class="links">
-			<li><a href="/board/list">Home</a></li>
+			<li><a href="/truck/list">Home</a></li>
 			<li><a href="/up/ajax">Image gallery</a></li>
 		</ul>
 	</nav>
@@ -150,8 +157,9 @@ text-align: center;
 				<h3>form</h3>
 
 				<form method="post" action="register" id="registerForm">
-					<div class="row uniform">
-						<div class="6u 12u$(xsmall)">
+				
+					<div class="row uniform" style = "margin-left:0;">
+						<div class="6u 12u$(xsmall)" style = "padding-left : 0">
 							<input type="text" name="title" id="name" value="제목"
 								placeholder="title" />
 						</div>
@@ -161,7 +169,7 @@ text-align: center;
 							readonly="readonly"	placeholder="writer" />
 						</div>
 
-						<div class="12u$">
+						<div class="12u$" style = "padding-left : 0">
 							<textarea name="content" id="message"
 								placeholder="Enter your message" rows="20"></textarea>
 						</div>
@@ -170,11 +178,17 @@ text-align: center;
 						
 						Drag&Drop file here.
 						</div>
+					
 					<div class="uploadedList">
 					
 					</div>
-					<div id="map" style="width:1000px; height:400px;"></div>
+			
+
+					
+					<div id="map" style="width:100%; height:400px;" ></div>
+					
 						<div class="12u$">
+						
 							<ul class="actions">
 								<li><input type="button" class="special list" value="List"></li>
 								<li><input type="submit" class="special list" value=" Register"></li>
@@ -200,14 +214,34 @@ text-align: center;
 <li><span class="mailbox-attachment-icon has-img"><img src="{{imgsrc}}" alt="Attachment"><span>
 <div class="mailbox-attachment-info">
 <a href="{{getLink}}" class="mailbox-attachment-name">{{fileName}}</a>
-<a href="{{fullName}}" class="btn btn-default btn-xs pull-right delbtn"><i class="fa fa-fw fa-remove"></i></a></div>
+<a href="{{fullName}}" class="btn btn-default btn-xs pull-right delbtn"><i class="fa fa-fw fa-remove"></i></a>
+	
+					<input type="radio" id="{{fullName}}" name="priority" value="{{fullName}}">
+					<label for="{{fullName}}">대표사진으로 쓰기</label>
+</div>
 </li>
+
 </script>
 
 
 <script>
 
 $(document).ready(function(){
+	
+	
+	
+	
+	 var csrfToken = "${_csrf.token}";
+
+     function setCsrf(token){
+     	
+     	$.ajaxSetup({
+             headers:
+             { 'X-CSRF-TOKEN':token }
+         });
+     	
+     }
+     
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	var options = { //지도를 생성할 때 필요한 기본 옵션
 		center: new daum.maps.LatLng(37.526571, 126.933590), //지도의 중심좌표.
@@ -216,15 +250,55 @@ $(document).ready(function(){
 
 	var map = new daum.maps.Map(container, options); //지도 생성 및 객체 리턴
 	// 마커가 표시될 위치입니다 
-	var markerPosition  = new daum.maps.LatLng(37.526571, 126.933590); 
-
-	// 마커를 생성합니다
-	var marker = new daum.maps.Marker({
-	    position: markerPosition
-	});
-
-	// 마커가 지도 위에 표시되도록 설정합니다
+	
+	
+	
+	// 지도를 클릭한 위치에 표출할 마커입니다
+	var marker = new daum.maps.Marker({ 
+    	// 지도 중심좌표에 마커를 생성합니다 
+    	position: map.getCenter() 
+		}); 
+	
+	// 지도에 마커를 표시합니다
 	marker.setMap(map);
+	
+	// 지도에 클릭 이벤트를 등록합니다
+	// 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+	
+	var lat= options.center.getLat();
+	var lng= options.center.getLng();
+	
+	
+	daum.maps.event.addListener(map, 'click', function(mouseEvent) {        
+	    
+	    // 클릭한 위도, 경도 정보를 가져옵니다 
+	    var latlng = mouseEvent.latLng; 
+	    
+	    // 마커 위치를 클릭한 위치로 옮깁니다
+	    marker.setPosition(latlng);
+	    
+	    var message = '클릭한 위치의 위도는 ' + latlng.getLat() + ' 이고, ';
+	    message += '경도는 ' + latlng.getLng() + ' 입니다';
+	    
+	    console.log(message);
+	    
+	    lat = latlng.getLat();
+		lng = latlng.getLng();
+	    
+	});
+	
+	
+	
+	
+	console.log("위도",lat,lng);
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	var template = Handlebars.compile($("#template").html());
@@ -235,6 +309,9 @@ $(document).ready(function(){
 	
 	
 	$(".fileDrop").on("drop", function(e){
+		
+		
+		
 		e.preventDefault();
 	
 		var files = e.originalEvent.dataTransfer.files;		
@@ -247,6 +324,10 @@ if(fileSize<maxSize){
 		var formData = new FormData();
 		console.log("size", fileSize);
 		formData.append("file" , file);
+		
+		
+		setCsrf(csrfToken);
+		
 		$.ajax({
 			url: '/ex/uploadAjax',
 			data:formData,
@@ -269,9 +350,18 @@ if(fileSize<maxSize){
  }
 	});
 	
+	
+
+	
+	
        $("#registerForm").submit(function(e){
     	   
     	   e.preventDefault();
+    	   if(!$('input:radio[name=priority]:checked').val()){
+    		   alert("대표사진을 지정하세요.");
+    		   return;
+    		   }
+    	   
     	   var that =$(this);
     	   console.log("that..1",that);
     	   var str="";
@@ -281,7 +371,10 @@ if(fileSize<maxSize){
      		  });
     	   
     	   	 console.log("that..2",that.get(0));
-    	   
+    	   	alert($('input:radio[name=priority]:checked').val());
+    	   	 that.append("<input type='hidden' name = 'lat' value='"+lat+"'>");
+    	   	that.append("<input type='hidden' name = 'lng' value='"+lng+"'>");
+    	   	that.append("<input type='hidden' name = 'fullname' value='"+$('input:radio[name=priority]:checked').val()+"'>");
       		 that.append(str);
      	 	 that.get(0).submit();
      	 	 
@@ -345,11 +438,11 @@ if(fileSize<maxSize){
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous"></script>
 	<script>
-		$(document).ready(function(e) {
+		/* $(document).ready(function(e) {
 			$(".actions").on("click", ".list", function(e) {
-				self.location = "/board/list${cri.makeSearch(cri.page)}";
+				self.location = "//list${cri.makeSearch(cri.page)}";
 			});
-		});
+		}); */
 	</script>
 </body>
 </html>

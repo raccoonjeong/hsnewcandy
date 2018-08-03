@@ -43,6 +43,7 @@ public class FreeboardServiceImpl implements FreeboardService {
 	}
 
 	public List<FreeboardVO> list(Criteria cri) {
+		log.info("진짜 리스트..........");
 		
 		return mapper.list(cri);
 	}

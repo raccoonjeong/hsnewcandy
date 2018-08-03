@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import org.candy.service.BoardService;
+import org.candy.service.TruckService;
 
 import com.mysql.jdbc.StringUtils;
 
@@ -21,7 +21,7 @@ import lombok.extern.log4j.Log4j;
 public class ViewsInterceptor extends HandlerInterceptorAdapter {
 
 	@Setter(onMethod_= {@Autowired})
-	private BoardService service;
+	private TruckService service;
 	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,

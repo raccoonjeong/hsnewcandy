@@ -38,7 +38,7 @@ public class TruckServiceImpl implements TruckService{
 		mapper.register(vo);
 
 		String[] files = vo.getFiles();
-		log.info("º¾½Ã´Ù........"+vo.getFullname());
+		log.info("dº¾½Ã´Ù........"+vo.getFullname());
 		if(files==null) {return ;}
 		
 		for(String fileName :files) {

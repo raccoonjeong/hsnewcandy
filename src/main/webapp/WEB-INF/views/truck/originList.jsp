@@ -66,7 +66,7 @@ font-weight: bold;
 	margin-left: 33%;
 }
 
-.bno {
+.fno {
 	font-size: 70%
 }
 
@@ -146,7 +146,7 @@ text-align: left;
 	<div class="btnlogOut2">
 	<button class="lOutbtn">logout</button>
 	</div>
-<%-- 	<input type="hidden" name = "${_csrf.parameterName}" value ="${_csrf.token}"> --%>
+  	<input type="hidden" name = "${_csrf.parameterName}" value ="${_csrf.token}">
 	</form>
 </sec:authorize>
 </div>
@@ -189,7 +189,7 @@ text-align: left;
 					</colgroup>
 
 					<thead>
-						<th>Bno</th>
+						<th>fno</th>
 						<th>Title</th>
 						<th style="text-align: right;">Views</th>
 						<th style="text-align: right;">Writer</th>
@@ -205,11 +205,11 @@ text-align: left;
 
 						<c:forEach items="${list}" var="vo">
 							<tr>
-								<td class="bno"><c:out value="${vo.bno}" /></td>
+								<td class="fno"><c:out value="${vo.fno}" /></td>
 								
-								<td class="box" id="toread" data-bno="${vo.bno}">
-								<span class="title"> <c:out value="${vo.title}" /></span>
-							<%-- 	 <span class="count">[<c:out value = "${vo.replycnt}"></c:out>]</span>
+								<td class="box" id="toread" data-fno="${vo.fno}">
+								<span class="title"> <c:out value="${vo.title}" /></span><!-- 할일 : 리플수 나중에 주석풀기 -->
+							<%-- 	 <span class="count">[<c:out value = "${vo.reviewCnt}"></c:out>]</span>
 									<span class="ico"> 
 										<c:if test="${vo.checkNew()}">
 											<img src="/resources/images/new.jpg">
@@ -330,10 +330,10 @@ text-align: left;
 
 			$(".box").on("click",function(e) {
 
-				var bno = $(this).attr("data-bno");
+				var fno = $(this).attr("data-fno");
 				var link = '${cri.makeSearch(cri.page)}';
 
-				self.location = "/freeboard/read"+ link + "&bno=" + bno;
+				self.location = "/freeboard/read"+ link + "&fno=" + fno;
 			});
 
 			console.log("history:" + history.state);

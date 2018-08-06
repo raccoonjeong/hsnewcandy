@@ -191,7 +191,7 @@ height: 3rem;
 		
 		var idCheck =  false; 
 		var inputId = "";
-		var pattern = /^[가-힣0-9a-zA-Z]*$/;
+		var pattern = /^[가-힣0-9a-zA-Z]*$/; //특수문자 방지
 		
 		var csrfToken = "${_csrf.token}";
 

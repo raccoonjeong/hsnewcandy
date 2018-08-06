@@ -9,6 +9,7 @@ import lombok.Data;
 
 @Data
 public class PageMaker {
+	//현재 페이지와 게시글의 토탈값 두가지를 매개변수로 해서 연산을 하여 나타냄...
 
 	private boolean prev, next;
 	private int page, start, end, total;
@@ -22,7 +23,7 @@ public class PageMaker {
 
 		int tempLast = (int) (Math.ceil(page / 10.0) * 10);
 
-		this.start = tempLast - 9;
+		this.start = tempLast - 9; 
 
 		prev = (start != 1);// true
 

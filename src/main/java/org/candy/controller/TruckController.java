@@ -5,7 +5,8 @@ import java.util.List;
 import org.candy.domain.Criteria;
 import org.candy.domain.PageMaker;
 import org.candy.domain.TruckVO;
-import org.candy.service.BoardService;
+import org.candy.service.TruckService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,12 +23,12 @@ import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-@RequestMapping("/board/*")
+@RequestMapping("/truck/*")
 @Log4j
-public class BoardController {
+public class TruckController {
 	
 	@Setter(onMethod_= {@Autowired})
-	private BoardService service;
+	private TruckService service;
 	
 	@GetMapping("/list")
 	public void getList(@ModelAttribute("cri")Criteria cri,Model model) throws Exception{
@@ -61,6 +62,7 @@ public class BoardController {
 		
 		log.info("vo:........."+vo);
 		log.info("vo:files........."+vo.getFiles());
+		log.info("vovovovovvo"+vo.getFullname());
 		
 
 		if (title != null && title.trim().length() != 0 && content != null && content.trim().length() != 0) {
@@ -73,7 +75,7 @@ public class BoardController {
 
 		
 		
-		return "redirect:/board/list";
+		return "redirect:/truck/list";
 			
 	}
 
@@ -81,7 +83,7 @@ public class BoardController {
 	public void read(@ModelAttribute("cri")Criteria cri, @ModelAttribute("fno") int fno,Model model) throws Exception{
 		log.info("Read...zzz");
 		model.addAttribute("vo", service.read(fno));
-		log.info("Crireadread postttttttttttttttttttttttttttt???????????"+cri.getPage());
+		log.info("read post?"+cri.getPage());
 
 		
 	}
@@ -102,7 +104,7 @@ public class BoardController {
 			rttr.addFlashAttribute("msg", "failRemove");
 			}
 				
-		return "redirect:/board/list"+cri.makeSearch(cri.getPage());
+		return "redirect:/truck/list"+cri.makeSearch(cri.getPage());
 	}
 
 	@GetMapping("/modify")
@@ -129,7 +131,7 @@ public class BoardController {
 		} else {
 			rttr.addFlashAttribute("msg", "fail");
 		}
-		return "redirect:/board/read" +cri.makeSearch(cri.getPage())+"&fno="+fno ;
+		return "redirect:/truck/read" +cri.makeSearch(cri.getPage())+"&fno="+fno ;
 	}
 	
 	@GetMapping("/getAttach/{fno}")

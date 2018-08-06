@@ -6,8 +6,9 @@ import lombok.Data;
 @Data
 public class TruckVO {
 	
-	private int fno, likecnt, reviewcnt;
+	private int fno, likeCnt, reviewCnt;
 	private String title, content, writer, keyword, open_check;
+	private String fullname;
 	private double lat, lng;
 	private Date regdate, updatedate;
 	private String[] files;

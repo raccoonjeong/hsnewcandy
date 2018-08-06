@@ -3,7 +3,7 @@ package org.candy.service;
 import org.candy.domain.Criteria;
 import org.candy.domain.ReviewDTO;
 import org.candy.domain.ReviewVO;
-import org.candy.mapper.BoardMapper;
+import org.candy.mapper.TruckMapper;
 import org.candy.mapper.ReviewMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,13 +19,14 @@ public class ReviewServiceImpl implements ReviewService {
 	
 
 	@Setter(onMethod_= {@Autowired})
-	private BoardMapper boardMapper;
+	private TruckMapper boardMapper;
 	
 	@Transactional
 	@Override
 	public int create(ReviewVO vo) {
 		
 		boardMapper.updateReviewCnt(vo.getFno(), 1);
+		
 		
 		ReviewMapper.create(vo);
 		 

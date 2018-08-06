@@ -3,7 +3,7 @@
   PUBLIC "-//mybatis.org//DTD mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.candy.mapper.BoardMapper">
+<mapper namespace="org.candy.mapper.TruckMapper">
 
 <select id="getAttach" resultType="string">
 select fullName from tbl_attach where fno = #{fno} order by regdate
@@ -19,6 +19,9 @@ insert into tbl_attach(fullName, fno) values (#{fullName}, #{fno})
 
 <insert id="addAttach">
  insert into tbl_attach (fullName, fno) values (#{fullName}, last_insert_id()) </insert>
+
+<insert id="addAttachRepresent">
+ insert into tbl_attach (fullName, fno, represent) values (#{fullName}, last_insert_id(), 't') </insert>
 
 	<sql id="search">
 		<where>
@@ -38,8 +41,11 @@ insert into tbl_attach(fullName, fno) values (#{fullName}, #{fno})
 </update>
 
 	<select id="list" resultType="org.candy.domain.TruckVO">
-		select fno, title, writer, open_check, lat, lng, regdate, updatedate, reviewcnt, likecnt 
-		from tbl_truck
+		select tbl_truck.fno, title, writer, keyword, open_check, 
+tbl_truck.regdate, updatedate, reviewcnt, likecnt, fullname, represent  
+from tbl_truck 
+left outer join tbl_attach 
+on tbl_truck.fno = tbl_attach.fno and represent = 't'
 		<include refid="search"></include>
 		order by fno desc
 		limit #{skip}, 10
@@ -51,28 +57,24 @@ insert into tbl_attach(fullName, fno) values (#{fullName}, #{fno})
 	</select>
 	
 	<insert id="register">
-	insert into tbl_truck (title, content, writer, open_check, lat, lng) 
-	values (#{title},#{content},#{writer}, #{open_check}, #{lat}, #{lng}); 
+	insert into tbl_truck (title, content, writer, lat, lng) 
+	values (#{title},#{content},#{writer}, #{lat}, #{lng}); 
 	</insert>
 
 	<select id="read" resultType="org.candy.domain.TruckVO">
 		select * from tbl_truck where fno = #{fno};
 	</select>
 	
-	
-	
-	
 	<delete id="remove">
 	delete from tbl_truck where fno = #{fno};
 	</delete>
-
 	
 	<update id="modify">
 	update tbl_truck set title=#{title}, content=#{content}, open_check=#{open_check}, lat=#{lat}, lng=#{lng}, updatedate=now() where fno=#{fno};
 	</update>
 
 
-<!-- <update id="updateViewCnt">
-        update tbl_aboard set viewcnt = viewcnt + 1 where bno = #{bno}
-    </update> -->
+<update id="updateViewCnt">
+        update tbl_truck set viewcnt = viewcnt + 1 where fno = #{fno}
+    </update>
 </mapper>

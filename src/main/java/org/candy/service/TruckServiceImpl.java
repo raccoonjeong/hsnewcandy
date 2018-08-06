@@ -4,18 +4,20 @@ import java.util.List;
 
 import org.candy.domain.Criteria;
 import org.candy.domain.TruckVO;
-import org.candy.mapper.BoardMapper;
+import org.candy.mapper.TruckMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.Setter;
+import lombok.extern.log4j.Log4j;
 
+@Log4j
 @Service
-public class BoardServiceImpl implements BoardService{
+public class TruckServiceImpl implements TruckService{
 
 	@Setter(onMethod_= {@Autowired})
-	private BoardMapper mapper;
+	private TruckMapper mapper;
 	
 	@Override
 	public List<TruckVO> list(Criteria cri) {
@@ -36,12 +38,20 @@ public class BoardServiceImpl implements BoardService{
 		mapper.register(vo);
 
 		String[] files = vo.getFiles();
-		
+		log.info("dº¾½Ã´Ù........"+vo.getFullname());
 		if(files==null) {return ;}
 		
 		for(String fileName :files) {
-			mapper.addAttach(fileName);
+			
+			if(fileName.equals(vo.getFullname())) {
+				mapper.addAttachRepresent(fileName);
+				log.info("¤¾¤¾¤¾¤¾¤¾");
+			}
+			else{
+				mapper.addAttach(fileName);}
 		}
+		
+		//vo.fullname
 	}
 
 	@Override

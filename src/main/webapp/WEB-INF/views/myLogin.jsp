@@ -159,9 +159,9 @@ height: 3rem;
 				self.location = "/board/list${cri.makeSearch(cri.page)}";
 			});
 			
-			$(".lbtn").on("click", function(e) {
+/* 			$(".lbtn").on("click", function(e) {
 				self.location = "/index";
-			});
+			}); */
 			
 			var error = "${error}"
 				if(error == "true"){

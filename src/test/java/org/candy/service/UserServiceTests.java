@@ -30,10 +30,11 @@ public class UserServiceTests {
 		
 		UserVO vo = new UserVO();
 		
-		vo.setUid("zxzx");
-		vo.setUpw("1111");
-		vo.setRole("s");
-		vo.setUname("zzz");
+		vo.setUid("user01");
+		vo.setUpw("pw01");
+		//vo.setRole("s");
+		vo.setUname("raccoon");
+		vo.setPhone_number("010-1818-1818");
 		vo.setEmail("3333@gmail.com");
 		
 		service.create(vo);

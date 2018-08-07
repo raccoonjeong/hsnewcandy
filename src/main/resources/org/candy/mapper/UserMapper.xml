@@ -32,7 +32,7 @@
 	
 	<insert id="create">
 		insert into tbl_user (uid, upw, uname, email, phone_number, role) 
-		values (#{uid},#{upw},#{uname},#{email},#{phone_number},#{role})
+		values (#{uid},#{upw},#{uname},#{email},#{phone_number},'s')
 	</insert>
 	
 	<insert id="createAuth">

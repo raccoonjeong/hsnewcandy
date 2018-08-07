@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
+import org.candy.service.FreeboardService;
 import org.candy.service.TruckService;
 
 import com.mysql.jdbc.StringUtils;
@@ -21,7 +22,7 @@ import lombok.extern.log4j.Log4j;
 public class ViewsInterceptor extends HandlerInterceptorAdapter {
 
 	@Setter(onMethod_= {@Autowired})
-	private TruckService service;
+	private FreeboardService service;
 	
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
@@ -58,7 +59,7 @@ public class ViewsInterceptor extends HandlerInterceptorAdapter {
 		          Cookie cookie = new Cookie("view_count", viewCount + newReadCount);
 		          cookie.setMaxAge(60*60*24);
 		          response.addCookie(cookie);
-		          service.updateViewCnt(bno); // 업데이트 실행
+		          //service.updateViewCnt(bno); // 업데이트 실행
 			  
 			 }
 		

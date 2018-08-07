@@ -81,7 +81,8 @@ public class TruckController {
 
 	@GetMapping("/read")
 	public void read(@ModelAttribute("cri")Criteria cri, @ModelAttribute("fno") int fno,Model model) throws Exception{
-		log.info("Read...zzz");
+		log.info("Read FNO......."+fno);
+		log.info("Read VO......."+service.read(fno));
 		model.addAttribute("vo", service.read(fno));
 		log.info("read post?"+cri.getPage());
 

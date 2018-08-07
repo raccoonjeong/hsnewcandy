@@ -5,23 +5,27 @@
 
 <mapper namespace="org.candy.mapper.TruckMapper">
 
-<select id="getAttach" resultType="string">
-select fullName from tbl_attach where fno = #{fno} order by regdate
-</select>
+	<select id="getAttach" resultType="string">
+		select fullName from tbl_attach where fno = #{fno} order by regdate
+	</select>
 
-<delete id = "deleteAttach">
-delete from tbl_attach where fno=#{fno}
-</delete>
+	<delete id="deleteAttach">
+		delete from tbl_attach where fno=#{fno}
+	</delete>
 
-<insert id="replaceAttach">
-insert into tbl_attach(fullName, fno) values (#{fullName}, #{fno})
-</insert>
+	<insert id="replaceAttach">
+		insert into tbl_attach(fullName, fno) values (#{fullName}, #{fno})
+	</insert>
 
-<insert id="addAttach">
- insert into tbl_attach (fullName, fno) values (#{fullName}, last_insert_id()) </insert>
+	<insert id="addAttach">
+		insert into tbl_attach (fullName, fno) values (#{fullName},
+		last_insert_id())
+	</insert>
 
-<insert id="addAttachRepresent">
- insert into tbl_attach (fullName, fno, represent) values (#{fullName}, last_insert_id(), 't') </insert>
+	<insert id="addAttachRepresent">
+		insert into tbl_attach (fullName, fno, represent) values (#{fullName},
+		last_insert_id(), 't')
+	</insert>
 
 	<sql id="search">
 		<where>
@@ -31,21 +35,21 @@ insert into tbl_attach(fullName, fno) values (#{fullName}, #{fno})
 					<if test="target eq 't'.toString()"> title like concat('%',#{keyword},'%') </if>
 					<if test="target eq 'c'.toString()"> content like concat('%',#{keyword},'%') </if>
 					<if test="target eq 'w'.toString()"> writer like concat('%',#{keyword},'%') </if>
-				</foreach> 
+				</foreach>
 			</if>
-			</where>
+		</where>
 	</sql>
-		
-<update id="updateReplyCnt">
-	update tbl_truck set reviewcnt = reviewcnt + #{amount} where fno=#{fno}
-</update>
+
+	<update id="updateReviewCnt">
+		update tbl_truck set reviewcnt = reviewcnt + #{amount} where fno=#{fno}
+	</update>
 
 	<select id="list" resultType="org.candy.domain.TruckVO">
-		select tbl_truck.fno, title, writer, keyword, open_check, 
-tbl_truck.regdate, updatedate, reviewcnt, likecnt, fullname, represent  
-from tbl_truck 
-left outer join tbl_attach 
-on tbl_truck.fno = tbl_attach.fno and represent = 't'
+		select tbl_truck.fno, title, writer, keyword, open_check,
+		tbl_truck.regdate, updatedate, reviewcnt, likecnt, fullname, represent
+		from tbl_truck
+		left outer join tbl_attach
+		on tbl_truck.fno = tbl_attach.fno and represent = 't'
 		<include refid="search"></include>
 		order by fno desc
 		limit #{skip}, 10
@@ -55,26 +59,29 @@ on tbl_truck.fno = tbl_attach.fno and represent = 't'
 		select count(*) from tbl_truck
 		<include refid="search"></include>
 	</select>
-	
+
 	<insert id="register">
-	insert into tbl_truck (title, content, writer, lat, lng) 
-	values (#{title},#{content},#{writer}, #{lat}, #{lng}); 
+		insert into tbl_truck (title, content, writer, lat, lng)
+		values (#{title},#{content},#{writer}, #{lat}, #{lng});
 	</insert>
 
 	<select id="read" resultType="org.candy.domain.TruckVO">
-		select * from tbl_truck where fno = #{fno};
+		select * from tbl_truck where fno =
+		#{fno};
 	</select>
-	
+
 	<delete id="remove">
-	delete from tbl_truck where fno = #{fno};
+		delete from tbl_truck where fno = #{fno};
 	</delete>
-	
+
 	<update id="modify">
-	update tbl_truck set title=#{title}, content=#{content}, open_check=#{open_check}, lat=#{lat}, lng=#{lng}, updatedate=now() where fno=#{fno};
+		update tbl_truck set title=#{title}, content=#{content},
+		open_check=#{open_check}, lat=#{lat}, lng=#{lng}, updatedate=now()
+		where fno=#{fno};
 	</update>
 
 
-<update id="updateViewCnt">
-        update tbl_truck set viewcnt = viewcnt + 1 where fno = #{fno}
-    </update>
+	<update id="updateViewCnt">
+		update tbl_truck set viewcnt = viewcnt + 1 where fno = #{fno}
+	</update>
 </mapper>

@@ -19,13 +19,13 @@ public class ReviewServiceImpl implements ReviewService {
 	
 
 	@Setter(onMethod_= {@Autowired})
-	private TruckMapper boardMapper;
+	private TruckMapper truckMapper;
 	
 	@Transactional
 	@Override
 	public int create(ReviewVO vo) {
 		
-		boardMapper.updateReviewCnt(vo.getFno(), 1);
+		truckMapper.updateReviewCnt(vo.getFno(), 1);
 		
 		
 		ReviewMapper.create(vo);
@@ -49,7 +49,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public int delete(Integer rno) {
 		int fno = ReviewMapper.getFno(rno);
-		boardMapper.updateReviewCnt(fno, -1);
+		truckMapper.updateReviewCnt(fno, -1);
 		
 		return ReviewMapper.delete(rno);
 	}
@@ -58,7 +58,7 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	@Transactional
 	public int rereview(ReviewVO vo) {
-		boardMapper.updateReviewCnt(vo.getFno(), 1);
+		truckMapper.updateReviewCnt(vo.getFno(), 1);
 		
 		return ReviewMapper.rereview(vo);
 	}

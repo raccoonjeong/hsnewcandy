@@ -1974,7 +1974,7 @@
 			input[type="button"],
 			button,
 			.button {
-				/* padding: 0; */
+				padding: 0;
 				width: 100%;
 			}
 
@@ -1985,8 +1985,11 @@
 	input[type="button"],
 	button,
 	.button {
-		background-color: #f2f2f2;
-		color: #000 !important;
+		background-color: #282828;  
+		color: #ffffff !important;
+		
+		/* background-color: #f2f2f2;
+		color: #000 !important; */
 	}
 
 		input[type="submit"]:hover,
@@ -1994,7 +1997,10 @@
 		input[type="button"]:hover,
 		button:hover,
 		.button:hover {
-			background-color: white;
+			background-color: purple;
+			
+			/* background-color: white; */
+			
 		}
 
 		input[type="submit"]:active,

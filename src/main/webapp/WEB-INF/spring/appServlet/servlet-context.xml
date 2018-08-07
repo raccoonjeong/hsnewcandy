@@ -43,7 +43,7 @@
 
 <interceptors>
 <interceptor>
-<mapping path="/truck/read"/>
+<mapping path="/freeboard/read"/>
 <beans:ref bean="viewInterceptor"/>
 </interceptor>
 </interceptors>

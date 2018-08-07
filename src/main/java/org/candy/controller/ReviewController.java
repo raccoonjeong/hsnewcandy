@@ -87,19 +87,16 @@ public class ReviewController {
 		
 		return new ResponseEntity<String>(msg, HttpStatus.OK);
 		
-		
 	}
 	
 	
-	@GetMapping("/list/{bno}/{page}")
+	@GetMapping("/list/{fno}/{page}")
 	public ResponseEntity<ReviewDTO> list(@PathVariable("page")Integer page,
-			@PathVariable("bno")Integer bno){
-		
+			@PathVariable("fno")Integer fno){
 		
 		Criteria cri = new Criteria(page);
-		
 			
-		return new ResponseEntity<ReviewDTO>(service.list(cri, bno), HttpStatus.OK);
+		return new ResponseEntity<ReviewDTO>(service.list(cri, fno), HttpStatus.OK);
 	
 	}
 	

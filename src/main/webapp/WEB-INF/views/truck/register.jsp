@@ -391,7 +391,7 @@ if(fileSize<maxSize){
     	   	that.append("<input type='hidden' name = 'fullname' value='"+$('input:radio[name=priority]:checked').val()+"'>");
       		 that.append(str);
      	 	 that.get(0).submit();//f
-     	 	 
+     	 	 //gg
       	 });
        
    	$(".uploadedList").on("click",".delbtn",function(e){

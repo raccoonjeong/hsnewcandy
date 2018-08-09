@@ -390,7 +390,7 @@ if(fileSize<maxSize){
     	   	that.append("<input type='hidden' name = 'lng' value='"+lng+"'>");
     	   	that.append("<input type='hidden' name = 'fullname' value='"+$('input:radio[name=priority]:checked').val()+"'>");
       		 that.append(str);
-     	 	 that.get(0).submit();
+     	 	 that.get(0).submit();//f
      	 	 
       	 });
        

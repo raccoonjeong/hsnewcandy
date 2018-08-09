@@ -61,8 +61,8 @@
 	</select>
 
 	<insert id="register">
-		insert into tbl_truck (title, content, writer, lat, lng)
-		values (#{title},#{content},#{writer}, #{lat}, #{lng});
+		insert into tbl_truck (title, content, writer, lat, lng, keyword)
+		values (#{title},#{content},#{writer}, #{lat}, #{lng}, #{keyword});
 	</insert>
 
 	<select id="read" resultType="org.candy.domain.TruckVO">

@@ -356,7 +356,7 @@ text-align: center;
 		</div>
 	</div>
 	
-	<div id="modalLayer"><div class="mask"></div>
+<div id="modalLayer"><div class="mask"></div>
     <div class="modalContent">
         <button class="closebtn">닫기</button>
 

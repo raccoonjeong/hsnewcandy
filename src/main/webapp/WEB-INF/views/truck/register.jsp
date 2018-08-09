@@ -97,10 +97,11 @@ text-align: center;
 margin-top : 30px;
 }
 
+#selectbox {
+	
+	width: 100%;
+}
     
-/* body {
-	background-image: url(/resources/images/bg.jpg);
-} */
 </style>
 </head>
 <body class="subpage">
@@ -168,6 +169,19 @@ margin-top : 30px;
 							<input type="text" name="writer" id="writer" value='<sec:authentication property="principal.username"/>' 
 							readonly="readonly"	placeholder="writer" />
 						</div>
+						
+						
+						<div id="selectbox" style="padding-left:0">
+							<select name="keyword" id="category">
+								<option value="">--대표 키워드를 선택하세요--</option>
+								<option value="곱창">곱창</option>
+								<option value="스테이크">스테이크</option>
+								<option value="타코야키">타코야키</option>
+								<option value="핫도그">핫도그</option>
+								<option value="곱창">곱창</option>
+							</select>
+						</div>
+
 
 						<div class="12u$" style = "padding-left : 0">
 							<textarea name="content" id="message"

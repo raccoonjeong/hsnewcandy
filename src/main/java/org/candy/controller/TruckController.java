@@ -61,6 +61,7 @@ public class TruckController {
 		String content = vo.getContent();
 		
 		log.info("vo:........."+vo);
+		log.info("vo:Å°¿öµå~~~~~~~~~~~~~~~~"+vo.getKeyword());
 		log.info("vo:files........."+vo.getFiles());
 		log.info("vovovovovvo"+vo.getFullname());
 		

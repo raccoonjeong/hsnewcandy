@@ -13,7 +13,7 @@
   </update>
   
 <!-- 대댓글용 -->
-  <insert id="rereply">
+  <insert id="rereview">
    insert into tbl_review (gno,fno,rcontent,replyer,ord) values(#{gno},#{fno},#{rcontent}, #{replyer}, #{ord}); 
   </insert>
 
@@ -21,7 +21,7 @@
     
     
     
-  <select id="read" resultType="org.candy.domain.ReplyVO">
+  <select id="read" resultType="org.candy.domain.ReviewVO">
     select * from tbl_review where rno = #{rno}
   </select>
   
@@ -31,23 +31,12 @@
   </update>
   
 
-  <!-- 대댓글 보유 여부 파악 -->
-  <select id="haveChild" resultType="int">
-  select count(*) from tbl_review where rno > 0 and ord = 1 and gno = #{rno};
-  </select>
-  
-  <!-- 대댓글 보유한 경우 -->
-  <update id="deleteParentRply">
-  update tbl_review set rcontent = "삭제된 댓글입니다.", replyer= "" where rno=#{rno};
-  </update>
-  
-  <!-- 대댓글 없거나 자신이 대댓글인 경우 -->
   <delete id="delete">
   delete from tbl_review where rno = #{rno}
   </delete>
   
   
-  <select id="list" resultType="org.candy.domain.ReplyVO">
+  <select id="list" resultType="org.candy.domain.ReviewVO">
   
 <!--   select * from tbl_review where rno > 0 and fno = #{fno} order by rno desc limit #{cri.skip},10 -->
    select * from tbl_review where fno=#{fno} order by gno asc,ord asc,rno asc limit #{cri.skip},10;

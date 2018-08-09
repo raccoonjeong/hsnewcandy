@@ -5,7 +5,7 @@ function checkImageType(fileName) {
 
 function getFileInfo(fullName){
 	
-	var fileName,imgsrc,getLink;
+	var fileName,imgsrc,getLink,originImg;
 	
 	var fileLink;
 	
@@ -16,6 +16,7 @@ function getFileInfo(fullName){
 		var front = fullName.substr(0,12);
 		var end = fullName.substr(14);
 		getLink = "/ex/displayFile?fileName="+front+end;
+		
 	}
 	else{
 		imgsrc="/resources/images/fileiconicon.jpg";

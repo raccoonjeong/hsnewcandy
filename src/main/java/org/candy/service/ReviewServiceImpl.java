@@ -27,7 +27,6 @@ public class ReviewServiceImpl implements ReviewService {
 		
 		truckMapper.updateReviewCnt(vo.getFno(), 1);
 		
-		
 		ReviewMapper.create(vo);
 		 
 		return ReviewMapper.updateup(vo);
@@ -61,18 +60,6 @@ public class ReviewServiceImpl implements ReviewService {
 		truckMapper.updateReviewCnt(vo.getFno(), 1);
 		
 		return ReviewMapper.rereview(vo);
-	}
-
-	@Override
-	public int haveChild(Integer rno) {
-		
-		return ReviewMapper.haveChild(rno);
-	}
-
-	@Override
-	public int deleteParentReview(Integer rno) {
-		// TODO Auto-generated method stub
-		return ReviewMapper.deleteParentReview(rno);
 	}
 
 	@Override

@@ -44,6 +44,7 @@ public class TruckServiceImpl implements TruckService{
 		for(String fileName :files) {
 			
 			if(fileName.equals(vo.getFullname())) {
+				
 				mapper.addAttachRepresent(fileName);
 				log.info("ぞぞぞぞぞ");
 			}

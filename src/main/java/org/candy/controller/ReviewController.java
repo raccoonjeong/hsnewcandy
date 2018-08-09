@@ -55,20 +55,12 @@ public class ReviewController {
 	
 	@DeleteMapping("/{rno}/{ord}")
 	public ResponseEntity<String> remove(
-			@PathVariable("rno")Integer rno, @PathVariable("ord")Integer ord){
+			@PathVariable("rno")Integer rno){
 		
 		
 		String msg = "fail";
-		log.info(ord);
-		log.info(service.haveChild(rno)>0);
-		if (ord == 0 && service.haveChild(rno)>0) {		
-			log.info("have child");
-			msg =  service.deleteParentReview(rno) == 1?"success":"fail";
-		}
-		else {
-			log.info("not have child");
-			msg =  service.delete(rno) == 1?"success":"fail";
-		}
+		msg =  service.delete(rno) == 1?"success":"fail";
+
 		
 		
 		return new ResponseEntity<String>(msg, HttpStatus.OK);

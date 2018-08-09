@@ -29,9 +29,6 @@ public interface ReviewMapper {
 	
 	public int delete(Integer rno);
 	
-	public int haveChild(Integer rno);
-	
-	public int deleteParentReview(Integer rno); 
 	
 	
 }

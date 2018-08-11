@@ -26,8 +26,11 @@ public interface ReviewMapper {
 	
 	public int rereview(ReviewVO vo);
 	
-	
 	public int delete(Integer rno);
+	
+	public int like(
+			@Param("fno") Integer fno, 
+			@Param("uid") String uid);
 	
 	
 	

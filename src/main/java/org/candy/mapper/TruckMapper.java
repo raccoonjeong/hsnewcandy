@@ -36,5 +36,5 @@ public interface TruckMapper {
 	//파라미터 여러개일때 @Param 붙이기
 	public void replaceAttach(@Param("fullName")String fullName,@Param("fno")Integer fno);
 	
-	
+	public void updateLikeCnt(@Param("fno")Integer fno, @Param("amount")int amount);
 }

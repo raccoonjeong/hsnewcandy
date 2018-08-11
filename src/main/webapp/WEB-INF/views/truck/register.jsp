@@ -49,7 +49,7 @@
 {
 	display:block;
 	width: 100%;
-    min-height: 220px;
+    min-height: 250px;
     padding: 20px;
     border: 1px solid #ccc;
     
@@ -64,9 +64,9 @@
 	display: inline-block;
 	border: 1px solid #ccc;
 	width: 170px;
-	height: 170px;
+	height: 200px;
 	float:left; 
-	margin:0px 10px 10px 10px;
+	margin:0px 10px 30px 10px;
 	
 }
 .uploadedList img{
@@ -174,6 +174,10 @@ margin-top : 30px;
 						<div id="selectbox" style="padding-left:0">
 							<select name="keyword" id="category">
 								<option value="">--대표 키워드를 선택하세요--</option>
+								<option value="새우">새우</option>
+								<option value="닭발">닭발</option>
+								<option value="커피">커피</option>
+								<option value="초밥">초밥</option>
 								<option value="곱창">곱창</option>
 								<option value="스테이크">스테이크</option>
 								<option value="타코야키">타코야키</option>
@@ -221,7 +225,7 @@ margin-top : 30px;
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous"></script>
-	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=59e8318797fd6445767e2561cad63793"></script>
+	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=bff61a89655a4af04b04e53c609f6b3a"></script>
 		
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.1/handlebars.js"></script>
 <script id="template" type="text/x-handlebars-template">

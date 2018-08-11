@@ -21,6 +21,7 @@ public interface ReviewService {
 	
 	public int delete(Integer rno);
 	
-	
+	public int like(@Param("fno") Integer fno, 
+			@Param("uid") String uid);
 	
 }

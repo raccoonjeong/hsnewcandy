@@ -85,7 +85,7 @@ public class TruckServiceImpl implements TruckService{
 		mapper.modify(vo);
 	}
 
-	@Override
+	/*@Override
 	public int updateReviewCnt(Integer fno, int amount) {		
 		return mapper.updateReviewCnt(fno,amount);
 		
@@ -95,7 +95,7 @@ public class TruckServiceImpl implements TruckService{
 	public void updateViewCnt(Integer fno) {
 		 mapper.updateViewCnt(fno);
 		
-	}
+	}*/
 
 	@Override
 	public List<String> getAttach(Integer fno) {

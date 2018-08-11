@@ -92,4 +92,14 @@ public class ReviewController {
 	
 	}
 	
+	@GetMapping("/like/{fno}/{uid}")
+	public ResponseEntity<String> like(
+			@PathVariable("fno")Integer fno, @PathVariable("uid")String uid){
+		
+			log.info("좋아요....글번호는"+fno+"번, 유저는"+uid);
+		String msg = service.like(fno,uid) == 1?"success":"fail";
+		return new ResponseEntity<String>(msg, HttpStatus.OK);
+	
+	}
+	
 }

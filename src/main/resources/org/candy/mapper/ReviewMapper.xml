@@ -4,50 +4,50 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.candy.mapper.ReviewMapper">
 
-<!-- 원댓글용 -->
-  <insert id="create">
-   insert into tbl_review (fno, rcontent, replyer) values(#{fno},#{rcontent}, #{replyer}); 
-  </insert>
-  <update id ="updateup">
-  	update tbl_review set gno = last_insert_id() where rno = last_insert_id();  
-  </update>
-  
-<!-- 대댓글용 -->
-  <insert id="rereview">
-   insert into tbl_review (gno,fno,rcontent,replyer,ord) values(#{gno},#{fno},#{rcontent}, #{replyer}, #{ord}); 
-  </insert>
+	<!-- 원댓글용 -->
+	<insert id="create">
+		insert into tbl_review (fno, rcontent, replyer) values(#{fno},#{rcontent},
+		#{replyer});
+	</insert>
+	<update id="updateup">
+		update tbl_review set gno = last_insert_id() where rno = last_insert_id();
+	</update>
 
-    
-    
-    
-    
-  <select id="read" resultType="org.candy.domain.ReviewVO">
-    select * from tbl_review where rno = #{rno}
-  </select>
-  
-  
-  <update id="update">
-  update tbl_review set rcontent = #{rcontent}, replyer=#{replyer} where rno = #{rno};
-  </update>
-  
+	<!-- 대댓글용 -->
+	<insert id="rereview">
+		insert into tbl_review (gno,fno,rcontent,replyer,ord)
+		values(#{gno},#{fno},#{rcontent}, #{replyer}, #{ord});
+	</insert>
 
-  <delete id="delete">
-  delete from tbl_review where rno = #{rno}
-  </delete>
-  
-  
-  <select id="list" resultType="org.candy.domain.ReviewVO">
-  
-<!--   select * from tbl_review where rno > 0 and fno = #{fno} order by rno desc limit #{cri.skip},10 -->
-   select * from tbl_review where fno=#{fno} order by gno asc,ord asc,rno asc limit #{cri.skip},10;
-  </select>
-  
-  <select id ="getTotal" resultType="int">
-  select count(*) from tbl_review where fno = #{fno}; 
-  </select>
-  
-  <select id="getFno" resultType="int">
-  select fno from tbl_review where rno = #{rno}
-  </select>
+	<select id="read" resultType="org.candy.domain.ReviewVO">
+		select * from tbl_review where rno = #{rno}
+	</select>
+
+	<update id="update">
+		update tbl_review set rcontent = #{rcontent}, replyer=#{replyer} where rno =
+		#{rno};
+	</update>
+
+	<delete id="delete">
+		delete from tbl_review where rno = #{rno}
+	</delete>
+
+	<select id="list" resultType="org.candy.domain.ReviewVO">
+		select * from tbl_review where fno=#{fno} order by gno asc,ord asc,rno asc
+		limit #{cri.skip},10;
+	</select>
+
+	<select id="getTotal" resultType="int">
+		select count(*) from tbl_review where fno = #{fno};
+	</select>
+
+	<select id="getFno" resultType="int">
+		select fno from tbl_review where rno = #{rno}
+	</select>
+	
+	<!-- 좋아요용 -->
+	<insert id="like">
+		insert into tbl_like (fno, uid) values (#{fno}, #{uid}) 
+	</insert>
 </mapper>    
     

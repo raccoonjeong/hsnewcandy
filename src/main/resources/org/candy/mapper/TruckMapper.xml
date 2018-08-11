@@ -43,6 +43,10 @@
 	<update id="updateReviewCnt">
 		update tbl_truck set reviewcnt = reviewcnt + #{amount} where fno=#{fno}
 	</update>
+	
+	<update id="updateLikeCnt">
+		update tbl_truck set likecnt = likecnt + #{amount} where fno=#{fno}
+	</update>
 
 	<select id="list" resultType="org.candy.domain.TruckVO">
 		select tbl_truck.fno, title, writer, keyword, open_check,

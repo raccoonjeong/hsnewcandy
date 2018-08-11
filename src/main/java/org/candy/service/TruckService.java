@@ -19,9 +19,9 @@ public interface TruckService {
 
 	public void modify(TruckVO vo);
 	
-	public int updateReviewCnt(Integer fno, int amount);
+	/*public int updateReviewCnt(Integer fno, int amount);
 
-	public void updateViewCnt(Integer fno);
+	public void updateViewCnt(Integer fno);*/
 	
 	public List<String> getAttach(Integer fno);
 	

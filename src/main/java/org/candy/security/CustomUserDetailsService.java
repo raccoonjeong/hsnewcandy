@@ -38,11 +38,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 		
 		UserVO vo = mapper.read(username);
 		
-		User user = new User(vo.getUid(),vo.getUpw(),
+		CustomUser user = new CustomUser(vo);
+		//수정 전 코드
+		/*User user = new User(vo.getUid(),vo.getUpw(),
 				vo.getAuthList().stream()
 				.map(authVO -> new SimpleGrantedAuthority(authVO.getAuth()))
 				.collect(Collectors.toList())
-				);
+				);*/
 		
 		return user;
 	}

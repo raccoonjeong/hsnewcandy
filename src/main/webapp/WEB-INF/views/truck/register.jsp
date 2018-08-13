@@ -120,7 +120,7 @@ margin-top : 30px;
 
 <sec:authorize access="isAuthenticated()">
 	<form action="/logout" method="post" ><sec:authentication property="principal" var="user"/>
-	<strong>${user.username}</strong> 님 환영합니다
+	<strong>${user.uname}</strong> 님 환영합니다
 	<button>logout</button>
 	<input type="hidden" name = "${_csrf.parameterName}" value ="${_csrf.token}">
 	</form>

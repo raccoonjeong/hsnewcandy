@@ -32,7 +32,7 @@
 	
 	<insert id="create">
 		insert into tbl_user (uid, upw, uname, email, phone_number, role) 
-		values (#{uid},#{upw},#{uname},#{email},#{phone_number},'s')
+		values (#{uid},#{upw},#{uname},#{email},#{phone_number},#{role})
 	</insert>
 	
 	<insert id="createAuth">
@@ -40,7 +40,8 @@
 	</insert>
 	
 	<update id="updatePassword" >
-		update tbl_user set upw = #{eupw} where uid= #{uid}
+		update tbl_user set upw = #{upw} where uid= #{uid}
+		<!-- update tbl_user set upw = #{eupw} where uid= #{uid} -->
 	</update>
 	
 	<select id="idcheck" parameterType="String" resultType="Integer">

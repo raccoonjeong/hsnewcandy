@@ -156,7 +156,8 @@ height : 300px;
 	<form action="/logout" method="post" >
 	<sec:authentication property="principal" var="user"/>
 	<div class="btnlogOut1">
-	<strong>${user.uname}</strong>님 환영합니다..
+	<strong>${user.vo.uname}<c:if test="${user.vo.role=='c'}">(Consumer)</c:if>
+	<c:if test="${user.vo.role=='s'}">(Seller)</c:if></strong>님
 	</div>
 	<div class="btnlogOut2">
 	<button class="lOutbtn">logout</button>
@@ -179,16 +180,18 @@ height : 300px;
 		</ul>
 		<br><br><br><br><br><br><br><br><br>
 		<ul>
- 		<li class = "myTruck">
-		1님,
-	아직 자신의 푸드트럭을 <br>등록하지 않으셨나요?<br>
-	<button class="button special fit"
-									id="regbtn" style="float: right;">Register</button>
+			<c:if test="${user.vo.role=='s'}">
+ 				<li class = "myTruck">
+ 					${user.vo.uname}님, <br>
+					아직 자신의 푸드트럭을 <br>등록하지 않으셨나요?<br>
+					<button class="button special fit"
+						id="regbtn" style="float: right;">Register</button>
 	
-	<button>Open</button>
-	<button>Close</button>
-	<button>Modify</button>
-	</li>	  	 
+					<button>Open</button>
+					<button>Close</button>
+					<button>Modify</button>
+				</li>	  	 
+			</c:if>
 		</ul>		
 	</nav>
 	

@@ -10,7 +10,7 @@
 <title>Hielo by TEMPLATED</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="/resources/css/main.css" />
+<link rel="stylesheet" href="/resources/css/main.css?ver=4" />
 
 <style>
 .wrapper style3{
@@ -38,7 +38,7 @@ padding: 6rem 0 15rem 0;
 	margin-right: auto;
 }
 
-.actions{
+.jbtn{
 	float: right;
 }
 
@@ -47,19 +47,19 @@ padding: 6rem 0 15rem 0;
 	text-align: left;
 }
 
-.midinput{
+.uidinput{
 	width: 75%;
 }
-.midCheck{
+.uidCheck{
 	width: 25%;
 	margin-top: 27px;
 }
 
-.mpwinput{
+.upwinput{
 	width: 100%;
 }
 
-.mnameinput{
+.unameinput{
 	width: 100%;
 }
 
@@ -75,7 +75,7 @@ font-size: 13pt;
 }
 
 button{
-height: 3rem;
+height: 2.3rem;
 }
 
 
@@ -119,30 +119,39 @@ height: 3rem;
 
 				<form action="/join" method="post">
 					<div class="row uniform">
-						<div class="midinput"> 
-						ID<input type="text" name = "uid" size="100%" class="checkid">
+						<div class="uidinput"> 
+							ID<input type="text" name = "uid" size="100%" class="checkid">
 						</div>
 						
 						<div class="uidCheck">
-						<button class="idCheck">ID CHECK</button>
-						<input type="hidden" name = "${_csrf.parameterName}" value ="${_csrf.token}">
-					</div>
+							<button class="idCheck">ID CHECK</button>
+							<input type="hidden" name = "${_csrf.parameterName}" value ="${_csrf.token}">
+						</div>
+					
 						
 						<div class="unameinput"> 
-					    Name<input type="text" name = "uname">	
+					    	Name<input type="text" name = "uname">	
 						</div>
 
 						<div class="upwinput">
-						PASSWORD<input type="text" name = "upw">					
+							Password<input type="text" name = "upw">					
 						</div>						
 				
 						<div class="emailinput">
-						E-mail<input type="text" name = "email">		
+							E-mail<input type="text" name = "email">		
 						</div>	
 						
 						<div class="phoneinput">
-						Phone<input type="text" name = "phone_number">		
+							Phone<input type="text" name = "phone_number">		
 						</div>	
+						
+						<div class = "identity">
+						
+							<input type="radio" id="c" name="role" value="c">
+							<label for="c">소비자</label>
+							<input type="radio" id="s" name="role" value="s">
+							<label for="s">판매자</label>
+						</div>
 						
 						<div class="12u$">
 							<ul class="actions">

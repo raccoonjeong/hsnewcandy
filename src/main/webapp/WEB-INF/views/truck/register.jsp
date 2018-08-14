@@ -4,9 +4,9 @@
 	templated.co @templatedco
 	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
 -->
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <html>
 <head>
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -120,7 +120,8 @@ margin-top : 30px;
 
 <sec:authorize access="isAuthenticated()">
 	<form action="/logout" method="post" ><sec:authentication property="principal" var="user"/>
-	<strong>${user.uname}</strong> 님 환영합니다
+	<strong>${user.vo.uname}<c:if test="${user.vo.role=='c'}">(Consumer)</c:if>
+	<c:if test="${user.vo.role=='s'}">(Seller)</c:if></strong>님
 	<button>logout</button>
 	<input type="hidden" name = "${_csrf.parameterName}" value ="${_csrf.token}">
 	</form>

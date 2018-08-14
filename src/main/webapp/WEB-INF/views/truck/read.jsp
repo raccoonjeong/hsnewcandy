@@ -256,7 +256,10 @@ padding-top: 0 ;
 					<form action="/logout" method="post">
 						<sec:authentication property="principal" var="user" />
 						<div class="btnlogOut1">
-							<strong>${user.uname}</strong>님 <strong>(Consumer)</strong>
+						
+	<strong>${user.vo.uname}<c:if test="${user.vo.role=='c'}">(Consumer)</c:if>
+	<c:if test="${user.vo.role=='s'}">(Seller)</c:if></strong>님
+
 						</div>
 						<div class="btnlogOut2">
 							<button class="lOutbtn">logout</button>

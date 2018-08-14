@@ -31,10 +31,6 @@ public class CustomUserDetailsService implements UserDetailsService {
 		
 		System.out.println("--------------------------------");
 		System.out.println("--------------------------------");
-		System.out.println("--------------------------------");
-		System.out.println("--------------------------------");
-		
-		
 		
 		UserVO vo = mapper.read(username);
 		

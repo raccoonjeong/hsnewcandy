@@ -41,7 +41,8 @@ public class TruckController {
 		
 		PageMaker pm =
 				new PageMaker(cri, totalCount);
-		model.addAttribute("pm",pm);		
+		model.addAttribute("pm",pm);
+		
 		
 	}
 	

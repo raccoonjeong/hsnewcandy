@@ -29,7 +29,7 @@
 		 
 		 />
 		
-		<security:logout invalidate-session="true" logout-success-url="/home" />
+		<security:logout invalidate-session="true" logout-success-url="/truck/list" />
 
 		<security:remember-me key="fft" token-validity-seconds="3600" data-source-ref="dataSource" />
 

@@ -25,7 +25,7 @@ public interface TruckService {
 	
 	public List<String> getAttach(Integer fno);
 	
-	
+
 
 
 }

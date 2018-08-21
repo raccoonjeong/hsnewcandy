@@ -87,8 +87,8 @@ public class LoginController {
 		ResponseEntity<String> entity = null;
 		
 		entity = new ResponseEntity<String>(Integer.toString(service.idcheck(mid)), HttpStatus.OK);
-		log.info("�븘�씠�뵒 泥댄겕 吏꾪뻾以�..................");
-		log.info("�븘�씠�뵒 泥댄겕 寃곌낵 : " + Integer.toString(service.idcheck(mid)));
+		log.info("idcheck..................");
+		log.info("CHECK ID : " + Integer.toString(service.idcheck(mid)));
 		
 		return entity;
 	}

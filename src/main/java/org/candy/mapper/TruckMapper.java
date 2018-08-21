@@ -37,4 +37,6 @@ public interface TruckMapper {
 	public void replaceAttach(@Param("fullName")String fullName,@Param("fno")Integer fno);
 	
 	public void updateLikeCnt(@Param("fno")Integer fno, @Param("amount")int amount);
+	
+
 }

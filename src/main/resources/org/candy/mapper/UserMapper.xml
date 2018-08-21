@@ -12,6 +12,7 @@
 		<result property="email" column="email" />
 		<result property="phone_number" column="phone_number" />
 		<result property="role" column="role" />
+		<result property="existTruck" column="existTruck" />
 		<collection property="authList" resultMap="authMap"></collection>
 	</resultMap>
 
@@ -22,7 +23,7 @@
 
 	<select id="read" resultMap="userMap">
 
-		select u.uid, upw, uname, email, phone_number, role, auth 
+		select u.uid, upw, uname, email, phone_number, role, auth, existTruck 
 		from
 		tbl_user u inner join tbl_user_auth auth
 		on u.uid = auth.uid
@@ -48,5 +49,9 @@
 		select count(*) from tbl_user 
 		where uid = #{uid}
 	</select>
+	
+	<update id="existTruck">
+		update tbl_user set existTruck = #{whether} where uid = #{uid}
+	</update>
 
 </mapper>

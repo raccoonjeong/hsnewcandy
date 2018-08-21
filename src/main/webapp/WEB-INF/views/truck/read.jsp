@@ -7,6 +7,7 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib uri="http://www.springframework.org/security/tags"
 	prefix="sec"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -344,8 +345,10 @@ padding-top: 0 ;
 
 				<div>
 					<ul class="actions" style="margin-top: 10px; width: 100%">
+						<c:if test="${user.vo.role=='c'}">
 						<li><input type="button" class="likeIt" value="♥"
 							style="background-color: crimson"></li>
+							</c:if>
 						<li><input type="button" class="goList" value="List"></li>
 						<li><input type="button" class="special modify"
 							data-fno="${vo.fno}" value="Modify" /></li>

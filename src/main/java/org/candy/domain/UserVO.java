@@ -17,4 +17,7 @@ public class UserVO {
 	public UserVO() {
 		this.authList = new ArrayList<UserAuthVO>();		
 	}	
+	
+	private Integer existTruck;
+	
 }

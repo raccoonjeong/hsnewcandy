@@ -5,6 +5,7 @@ import java.util.List;
 import org.candy.domain.Criteria;
 import org.candy.domain.TruckVO;
 import org.candy.mapper.TruckMapper;
+import org.candy.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +19,9 @@ public class TruckServiceImpl implements TruckService{
 
 	@Setter(onMethod_= {@Autowired})
 	private TruckMapper mapper;
+	
+	@Setter(onMethod_= {@Autowired})
+	private UserMapper userMapper;
 	
 	@Override
 	public List<TruckVO> list(Criteria cri) {
@@ -36,6 +40,7 @@ public class TruckServiceImpl implements TruckService{
 	public void register(TruckVO vo) {
 		
 		mapper.register(vo);
+		userMapper.existTruck(vo.getWriter(), 1);
 
 		String[] files = vo.getFiles();
 		log.info("dº¾½Ã´Ù........"+vo.getFullname());
@@ -102,5 +107,7 @@ public class TruckServiceImpl implements TruckService{
 
 		return mapper.getAttach(fno);
 	}
+
+	
 	
 }

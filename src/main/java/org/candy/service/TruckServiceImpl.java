@@ -108,6 +108,13 @@ public class TruckServiceImpl implements TruckService{
 		return mapper.getAttach(fno);
 	}
 
+	@Override
+	public void openClose(String uid, String value) {
+		
+		mapper.openClose(uid, value);
+		
+	}
+
 	
 	
 }

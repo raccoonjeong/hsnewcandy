@@ -25,7 +25,8 @@ public interface TruckService {
 	
 	public List<String> getAttach(Integer fno);
 	
-
+	public void openClose(String uid, String value);
+	
 
 
 }

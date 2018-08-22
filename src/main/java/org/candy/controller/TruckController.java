@@ -44,6 +44,7 @@ public class TruckController {
 		model.addAttribute("pm",pm);
 		
 		
+		
 	}
 	
 	@GetMapping("/register")
@@ -141,6 +142,22 @@ public class TruckController {
 	public @ResponseBody List<String> getAttach(@PathVariable("fno")Integer fno) throws Exception{
 		
 		return service.getAttach(fno);
+	}
+	
+	@PostMapping("/open")
+	public String open(@ModelAttribute("cri")Criteria cri,@RequestParam("uid")String uid, Model model, RedirectAttributes rttr) throws Exception{
+		service.openClose(uid, "t");
+	
+		rttr.addFlashAttribute("msg", "openSuccess");
+		return "redirect:/truck/list";
+	}
+	
+	@PostMapping("/close")
+	public String close(@ModelAttribute("cri")Criteria cri,String uid, Model model, RedirectAttributes rttr) throws Exception{
+		service.openClose(uid, "f");
+		
+		rttr.addFlashAttribute("msg", "closeSuccess");
+		return "redirect:/truck/list";
 	}
 	
 }

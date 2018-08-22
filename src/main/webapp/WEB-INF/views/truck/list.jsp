@@ -181,6 +181,7 @@ height : 300px;
 		<br><br><br><br><br><br><br><br><br>
 		<ul>
 			<c:if test="${user.vo.role=='s'}">
+ 				
  				<li class = "myTruck">
  				
  					<c:if test="${user.vo.existTruck==0}">
@@ -191,15 +192,24 @@ height : 300px;
 					<c:if test="${user.vo.existTruck==1}">
 						${user.vo.uname}님, <br>
 						자신의 푸드트럭을 관리해보세요.<br>
-						<button>Open</button>
-						<button>Close</button>
+						
+						<button id = "openBtn">Open</button>
+						
+						<button id = "closeBtn">Close</button>
+
 						<button>Modify</button>
 					</c:if>
-				</li>	  	 
+					
+				</li>	  	
+				
 			</c:if>
+			
 		</ul>		
 	</nav>
-	
+	<form id="openClose"> 
+		<input type="hidden" name="uid" value="${user.username}">
+		<input type="hidden" name = "${_csrf.parameterName}" value ="${_csrf.token}">
+	</form>
 	<!-- One -->
 	<section id="One" class="wrapper style3">
 		<div class="inner">
@@ -384,11 +394,32 @@ height : 300px;
 			if (msg == "failRemove" && !history.state) {
 				alert("삭제에 실패하였습니다.");
 				}
+			if (msg == "openSuccess" && !history.state) {
+				alert("영업을 시작합니다.");
+				}
+			if (msg == "closeSuccess" && !history.state) {
+				alert("영업을 종료합니다.");
+				}
 			history.replaceState({}, null, null);
 			
 			$(".lOutbtn").on("click", function(e) {
 				
 				alert("로그아웃 되었습니다.");				
+			});
+			
+			$("#openBtn").on("click",function(e) {
+				var result = confirm("영업을 시작하시겠습니까?");
+				if(result){
+					$("#openClose").attr({action:"open", method:'post'}).submit();
+				}else{return;}
+				
+			});
+			
+			$("#closeBtn").on("click",function(e) {
+				var result = confirm("영업을 종료하시겠습니까?");
+				if(result){
+					$("#openClose").attr({action:"close", method:'post'}).submit();
+				}else{return;}
 			});
 		});
 	</script>

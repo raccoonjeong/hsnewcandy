@@ -89,6 +89,11 @@
 		update tbl_truck set viewcnt = viewcnt + 1 where fno = #{fno}
 	</update>
 	
+	<update id="openClose">
+		update tbl_truck set open_check = #{value} where writer = #{uid}
+	</update>
+	
+	
 	
 	
 </mapper>

@@ -203,7 +203,16 @@ height : 300px;
 				</li>	  	
 				
 			</c:if>
-			
+			<li class = "myTruck">
+			<c:if test="${user.vo.role=='c'}">
+ 				${user.vo.uname}님, <br>
+				관심키워드를 설정해보세요.<br> 
+				실시간 알림을 보내드려요. 				
+ 				<button id = "keywordBtn">My Keyword</button>
+ 			
+ 				
+ 			</c:if>
+			</li>
 		</ul>		
 	</nav>
 	<form id="openClose"> 
@@ -420,6 +429,25 @@ height : 300px;
 				if(result){
 					$("#openClose").attr({action:"close", method:'post'}).submit();
 				}else{return;}
+			});
+			
+			$("#keywordBtn").on("click", function(e){
+				
+				var windowW = 900;  // 창의 가로 길이
+				 var windowH = 700;  // 창의 세로 길이
+				 var left = Math.ceil((window.screen.width - windowW)/2);
+				 var top = Math.ceil((window.screen.height - windowH)/2);
+				
+				
+				
+				e.preventDefault();
+				
+				window.open("http://localhost:8080/truck/keyword", "keywordInput", 
+						"toolbar=no, menubar=no, scrollbars=no, resizable=yes, l top="+
+						top+", left="+left+", height="+windowH+", width="+windowW);			
+				
+				
+				
 			});
 		});
 	</script>

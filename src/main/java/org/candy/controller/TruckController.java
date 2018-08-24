@@ -160,4 +160,9 @@ public class TruckController {
 		return "redirect:/truck/list";
 	}
 	
+	@GetMapping("/keyword")
+	public void getKeyword(@ModelAttribute("cri")Criteria cri,Model model) throws Exception{
+		
+	}
+	
 }

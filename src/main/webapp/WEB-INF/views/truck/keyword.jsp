@@ -10,7 +10,7 @@
 <title>Hielo by TEMPLATED</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="/resources/css/main.css" />
+<link rel="stylesheet" href="/resources/css/main.css?ver=1" />
 
 <style>
 .subpage {
@@ -54,6 +54,19 @@ font-size: 13pt;
 button{
 height: 3rem;
 }
+
+.keyList li{
+width:50%;
+float:left;
+list-style:none;
+}
+
+.keyList::after{
+display: block;
+content:"";
+clear:both;
+}
+
 /* body {
 	background-image: url(/resources/images/bg.jpg);
 } */
@@ -97,10 +110,47 @@ height: 3rem;
 	<div id="main" class="container">
 		<div class="outer">
 			<div class="mytable">
-				<h3>My Keyword</h3>
+				<h3><i class="fa fa-key" aria-hidden="true"></i>  My Keyword</h3>
+				<hr>
+				<h3>Choose keyword. </h3>
 
-				<h1>임시페이지 Hello world</h1>
-				<hr/>
+				<ul class="keyList">
+					<li>
+					<input type="checkbox" id="copy" name="copy">
+					<label for="copy">새우</label>
+					</li>
+					<li>
+					<input type="checkbox" id="copy2" name="copy2">
+					<label for="copy2">닭발</label>
+					</li>
+					<li>
+					<input type="checkbox" id="copy3" name="copy3">
+					<label for="copy3">커피</label>
+					</li>
+					<li>
+					<input type="checkbox" id="copy4" name="copy4">
+					<label for="copy4">초밥</label>
+					</li>
+					<li>
+					<input type="checkbox" id="copy5" name="copy5">
+					<label for="copy5">곱창</label>
+					</li>
+					<li>
+					<input type="checkbox" id="copy6" name="copy6">
+					<label for="copy6">스테이크</label>
+					</li>
+					<li>
+					<input type="checkbox" id="copy7" name="copy7">
+					<label for="copy7">타코야키</label>
+					</li>
+					<li>
+					<input type="checkbox" id="copy8" name="copy8">
+					<label for="copy8">핫도그</label>
+				</li>
+				</ul>
+				<hr>
+				<div style="text-align:right; margin-top:15px; padding-bottom:15px"><input type="button" value="Choose!"></div>
+				
 			</div>
 		</div>
 	</div>
@@ -137,22 +187,6 @@ height: 3rem;
 			$(".actions").on("click", ".list", function(e) {
 				self.location = "/board/list${cri.makeSearch(cri.page)}";
 			});
-			
-/* 			$(".lbtn").on("click", function(e) {
-				self.location = "/index";
-			}); */
-			
-			var error = "${error}"
-				if(error == "true"){
-					alert("아이디나 비밀번호를 확인하세요.");
-				}
-			
-			var msg = '<c:out value="${msg}"/>';		
-
-			if (msg == "join") {
-				alert("회원가입이 완료되었습니다. 로그인 페이지로 이동합니다.");
-				}
-
 			
 		});
 				

@@ -183,7 +183,7 @@ margin-top : 30px;
 								<option value="스테이크">스테이크</option>
 								<option value="타코야키">타코야키</option>
 								<option value="핫도그">핫도그</option>
-								<option value="곱창">곱창</option>
+								
 							</select>
 						</div>
 

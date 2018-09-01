@@ -178,7 +178,7 @@ height : 300px;
 			<li><a href="/board/list">Free Board</a></li>
 			<li><a href="/mypage">My page</a></li>
 		</ul>
-		<br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br>${user.vo.email}
 		<ul>
 			<c:if test="${user.vo.role=='s'}">
  				
@@ -416,20 +416,7 @@ height : 300px;
 				alert("로그아웃 되었습니다.");				
 			});
 			
-			$("#openBtn").on("click",function(e) {
-				var result = confirm("영업을 시작하시겠습니까?");
-				if(result){
-					$("#openClose").attr({action:"open", method:'post'}).submit();
-				}else{return;}
-				
-			});
 			
-			$("#closeBtn").on("click",function(e) {
-				var result = confirm("영업을 종료하시겠습니까?");
-				if(result){
-					$("#openClose").attr({action:"close", method:'post'}).submit();
-				}else{return;}
-			});
 			
 			$("#keywordBtn").on("click", function(e){
 				
@@ -451,6 +438,68 @@ height : 300px;
 			});
 		});
 	</script>
+	
+	
+	
+<script src="https://www.gstatic.com/firebasejs/5.4.2/firebase.js"></script>
+
+<!-- Firebase App is always required and must be first -->
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+
+<!-- Add additional services you want to use -->
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-firestore.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-messaging.js"></script>
+<script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-functions.js"></script>
+
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyB8HBoFl5-x61YX3Gd6U5lHGqspOlB-SUE",
+    authDomain: "hscandy-b0a6d.firebaseapp.com",
+    databaseURL: "https://hscandy-b0a6d.firebaseio.com",
+    projectId: "hscandy-b0a6d",
+    storageBucket: "hscandy-b0a6d.appspot.com",
+    messagingSenderId: "744061303057"
+  };
+  firebase.initializeApp(config);
+  
+  var db = firebase.database();
+  var sellerRef = db.ref("candy/seller");
+  var uidVal = "${user.vo.uid}";
+  var keyVal = "새우";
+  var storeVal = "새우왕";
+  
+  $("#openBtn").on("click",function(e) {
+		var result = confirm("영업을 시작하시겠습니까?");
+		if(result){
+			$("#openClose").attr({action:"open", method:'post'}).submit();
+			
+			sellerRef.child(uidVal).set({keyword:keyVal, store:storeVal}, function () {
+	            console.log("TestSaved....");
+			});
+			
+		}else{
+			sellerRef.on('value', function(snapshot) {
+		    console.log(snapshot.val());
+				});
+			
+			return;}
+		
+	});
+	
+	$("#closeBtn").on("click",function(e) {
+		var result = confirm("영업을 종료하시겠습니까?");
+		if(result){
+			$("#openClose").attr({action:"close", method:'post'}).submit();
+			
+			sellerRef.child(uidVal).remove();
+			
+		}else{return;}
+	});
+  
+</script>
 	
 	
 

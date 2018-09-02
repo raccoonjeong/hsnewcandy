@@ -2,11 +2,13 @@ package org.candy.service;
 
 import org.apache.ibatis.annotations.Param;
 import org.candy.domain.UserAuthVO;
+import org.candy.domain.UserDetailsVO;
 import org.candy.domain.UserVO;
 
 public interface UserService {
 	
-	public UserVO read(String uid);
+	//없어도 되는거 아닌가?
+	public UserDetailsVO read(String uid);
 	
 	public void create(UserVO vo);
 	

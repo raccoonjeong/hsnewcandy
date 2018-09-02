@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.candy.domain.UserAuthVO;
+import org.candy.domain.UserDetailsVO;
 import org.candy.domain.UserVO;
 import org.candy.mapper.UserMapper;
 
@@ -27,7 +28,7 @@ public class DummyUserCreater {
 	
 	@Test
 	public void testRead() {
-		UserVO vo = mapper.read("user01");
+		UserDetailsVO vo = mapper.read("user03");
 		
 		log.info("vo~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"+vo);
 	}

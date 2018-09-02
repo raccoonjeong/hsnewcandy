@@ -5,7 +5,7 @@
 
 <mapper namespace="org.candy.mapper.UserMapper">
 	<!-- 게시물 조회할때 댓글의 데이터까지 같이 가져오는 기능으로 이해하기 -->
-	<resultMap type="org.candy.domain.UserVO" id="userMap">
+	<resultMap type="org.candy.domain.UserDetailsVO" id="userMap">
 		<id property="uid" column="uid" />
 		<result property="upw" column="upw" />
 		<result property="uname" column="uname" />
@@ -13,6 +13,13 @@
 		<result property="phone_number" column="phone_number" />
 		<result property="role" column="role" />
 		<result property="existTruck" column="existTruck" />
+		<result property="regdate" column="regdate" />
+		<result property="updatedate" column="updatedate" />
+		<result property="title" column="title" />
+		<result property="open_check" column="open_check" />
+		<result property="keyword" column="keyword" />
+		<result property="lat" column="lat" />
+		<result property="lng" column="lng" />
 		<collection property="authList" resultMap="authMap"></collection>
 	</resultMap>
 
@@ -23,35 +30,45 @@
 
 	<select id="read" resultMap="userMap">
 
-		select u.uid, upw, uname, email, phone_number, role, auth, existTruck 
+		select u.uid, upw, uname, email,
+		phone_number,
+		role, auth, u.regdate, u.updatedate, existTruck,
+		title, open_check, keyword, lat, lng
 		from
-		tbl_user u inner join tbl_user_auth auth
-		on u.uid = auth.uid
+		tbl_user u
+		inner join tbl_user_auth a
+		on u.uid = a.uid
+		left outer join tbl_truck as t
+		on u.uid = t.writer
 		where u.uid=#{uid}
 
 	</select>
-	
+
 	<insert id="create">
-		insert into tbl_user (uid, upw, uname, email, phone_number, role) 
+		insert into tbl_user (uid, upw, uname, email,
+		phone_number, role)
 		values (#{uid},#{upw},#{uname},#{email},#{phone_number},#{role})
 	</insert>
-	
+
 	<insert id="createAuth">
-		insert into tbl_user_auth (uid, auth) values (#{uid}, #{auth})
+		insert into tbl_user_auth (uid, auth) values (#{uid},
+		#{auth})
 	</insert>
-	
-	<update id="updatePassword" >
+
+	<update id="updatePassword">
 		update tbl_user set upw = #{upw} where uid= #{uid}
 		<!-- update tbl_user set upw = #{eupw} where uid= #{uid} -->
 	</update>
-	
+
 	<select id="idcheck" parameterType="String" resultType="Integer">
-		select count(*) from tbl_user 
+		select
+		count(*) from tbl_user
 		where uid = #{uid}
 	</select>
-	
+
 	<update id="existTruck">
-		update tbl_user set existTruck = #{whether} where uid = #{uid}
+		update tbl_user set existTruck = #{whether} where uid
+		= #{uid}
 	</update>
 
 </mapper>

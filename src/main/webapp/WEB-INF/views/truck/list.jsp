@@ -178,7 +178,7 @@ height : 300px;
 			<li><a href="/board/list">Free Board</a></li>
 			<li><a href="/mypage">My page</a></li>
 		</ul>
-		<br><br><br><br><br><br><br><br><br>${user.vo.email}
+		<br><br><br><br><br><br><br><br><br>
 		<ul>
 			<c:if test="${user.vo.role=='s'}">
  				
@@ -192,7 +192,7 @@ height : 300px;
 					<c:if test="${user.vo.existTruck==1}">
 						${user.vo.uname}님, <br>
 						자신의 푸드트럭을 관리해보세요.<br>
-						
+						${user.vo.title}
 						<button id = "openBtn">Open</button>
 						
 						<button id = "closeBtn">Close</button>

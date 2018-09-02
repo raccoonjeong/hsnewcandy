@@ -2,11 +2,12 @@ package org.candy.mapper;
 
 import org.apache.ibatis.annotations.Param;
 import org.candy.domain.UserAuthVO;
+import org.candy.domain.UserDetailsVO;
 import org.candy.domain.UserVO;
 
 public interface UserMapper {
 
-	public UserVO read(String uid);
+	public UserDetailsVO read(String uid);
 	
 	public void create(UserVO vo);
 	

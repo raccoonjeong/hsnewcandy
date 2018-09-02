@@ -41,7 +41,6 @@ public interface TruckMapper {
 	//오픈클로즈
 	public void openClose(@Param("uid")String uid, @Param("value")String value);
 	
-	//나의 트럭 오픈여부 불러오기
-	public String readMyTruck(String uid);
+
 
 }

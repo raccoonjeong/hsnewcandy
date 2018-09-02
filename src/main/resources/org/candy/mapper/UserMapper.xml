@@ -12,7 +12,6 @@
 		<result property="email" column="email" />
 		<result property="phone_number" column="phone_number" />
 		<result property="role" column="role" />
-		<result property="existTruck" column="existTruck" />
 		<result property="regdate" column="regdate" />
 		<result property="updatedate" column="updatedate" />
 		<result property="title" column="title" />
@@ -32,7 +31,7 @@
 
 		select u.uid, upw, uname, email,
 		phone_number,
-		role, auth, u.regdate, u.updatedate, existTruck,
+		role, auth, u.regdate, u.updatedate,
 		title, open_check, keyword, lat, lng
 		from
 		tbl_user u
@@ -66,9 +65,6 @@
 		where uid = #{uid}
 	</select>
 
-	<update id="existTruck">
-		update tbl_user set existTruck = #{whether} where uid
-		= #{uid}
-	</update>
+	
 
 </mapper>

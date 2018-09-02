@@ -68,8 +68,5 @@ public class UserMapperTests {
 		mapper.idcheck(mid);
 	}
 	
-	@Test
-	public void existTruckTest() {
-		mapper.existTruck("user01", 1);
-	}
+	
 }

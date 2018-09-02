@@ -40,7 +40,7 @@ public class TruckServiceImpl implements TruckService{
 	public void register(TruckVO vo) {
 		
 		mapper.register(vo);
-		userMapper.existTruck(vo.getWriter(), 1);
+		
 
 		String[] files = vo.getFiles();
 		log.info("dº¾½Ã´Ù........"+vo.getFullname());

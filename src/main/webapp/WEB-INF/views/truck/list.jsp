@@ -184,12 +184,12 @@ height : 300px;
  				
  				<li class = "myTruck">
  				
- 					<c:if test="${user.vo.existTruck==0}">
+ 					<c:if test="${user.vo.title==null}">
  						${user.vo.uname}님, <br>
 						아직 자신의 푸드트럭을 <br>등록하지 않으셨나요?<br>
 						<button id="regbtn">Register</button>
 					</c:if>
-					<c:if test="${user.vo.existTruck==1}">
+					<c:if test="${user.vo.title!=null}">
 						${user.vo.uname}님, <br>
 						자신의 푸드트럭을 관리해보세요.<br>
 						${user.vo.title}

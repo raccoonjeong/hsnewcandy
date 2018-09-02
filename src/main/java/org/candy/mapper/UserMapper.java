@@ -17,6 +17,4 @@ public interface UserMapper {
 	
 	public Integer idcheck(String uid);
 	
-	//글작성여부
-	public int existTruck(@Param("uid")String uid, @Param("whether")Integer whether);
 }

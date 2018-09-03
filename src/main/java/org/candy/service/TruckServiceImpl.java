@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.candy.domain.Criteria;
 import org.candy.domain.TruckVO;
+import org.candy.domain.UserTruckVO;
 import org.candy.mapper.TruckMapper;
 import org.candy.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,6 +114,12 @@ public class TruckServiceImpl implements TruckService{
 		
 		mapper.openClose(uid, value);
 		
+	}
+
+	@Override
+	public UserTruckVO readMyTruck(String uid) {
+		
+		return mapper.readMyTruck(uid);
 	}
 
 	

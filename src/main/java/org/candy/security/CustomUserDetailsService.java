@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.candy.domain.UserDetailsVO;
 import org.candy.domain.UserVO;
 import org.candy.mapper.UserMapper;
 
@@ -32,7 +31,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 		System.out.println("--------------------------------");
 		System.out.println("--------------------------------");
 		
-		UserDetailsVO vo = mapper.read(username);
+		UserVO vo = mapper.read(username);
 		
 		CustomUser user = new CustomUser(vo);
 		//수정 전 코드

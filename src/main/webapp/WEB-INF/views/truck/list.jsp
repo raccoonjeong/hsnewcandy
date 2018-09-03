@@ -184,15 +184,15 @@ height : 300px;
  				
  				<li class = "myTruck">
  				
- 					<c:if test="${user.vo.title==null}">
+ 					<c:if test="${myTruck.title==null}">
  						${user.vo.uname}님, <br>
 						아직 자신의 푸드트럭을 <br>등록하지 않으셨나요?<br>
 						<button id="regbtn">Register</button>
 					</c:if>
-					<c:if test="${user.vo.title!=null}">
+					<c:if test="${myTruck.title!=null}">
 						${user.vo.uname}님, <br>
 						자신의 푸드트럭을 관리해보세요.<br>
-						${user.vo.title}
+						<strong>${myTruck.title}</strong> <br>
 						<button id = "openBtn">Open</button>
 						
 						<button id = "closeBtn">Close</button>
@@ -259,8 +259,9 @@ height : 300px;
 							<header class="align-center">
 							
 								<p style="font-size: 1.9em"><c:out value="${vo.title}"></c:out></p>	
-								<h2><c:if test="${vo.open_check=='f'}">CLOSE</c:if>
-								<c:if test="${vo.open_check=='t'}">OPEN</c:if></h2>
+								<c:if test="${vo.open_check=='f'}"><span style="font-size: 2em">CLOSE</span></c:if>
+								<c:if test="${vo.open_check=='t'}"><span style="color: #323232;; font-size: 2em;  background: LightGreen;">
+								&nbsp;&nbsp;&nbsp;&nbsp;OPEN&nbsp;&nbsp;&nbsp;&nbsp;</span></c:if>
 							</header>
 							
 						<p><c:out value="${vo.keyword}"></c:out></p>
@@ -429,7 +430,7 @@ height : 300px;
 				
 				e.preventDefault();
 				
-				window.open("http://localhost:8080/truck/keyword", "keywordInput", 
+				window.open("https://hscandy-b0a6d.firebaseapp.com", "keywordInput", 
 						"toolbar=no, menubar=no, scrollbars=no, resizable=yes, l top="+
 						top+", left="+left+", height="+windowH+", width="+windowW);			
 				
@@ -467,16 +468,18 @@ height : 300px;
   
   var db = firebase.database();
   var sellerRef = db.ref("candy/seller");
+  
   var uidVal = "${user.vo.uid}";
-  var keyVal = "새우";
-  var storeVal = "새우왕";
+  var fnoVal = "${myTruck.fno}";
+  var keyVal = "${myTruck.keyword}";
+  var storeVal = "${myTruck.title}";
   
   $("#openBtn").on("click",function(e) {
 		var result = confirm("영업을 시작하시겠습니까?");
 		if(result){
 			$("#openClose").attr({action:"open", method:'post'}).submit();
 			
-			sellerRef.child(uidVal).set({keyword:keyVal, store:storeVal}, function () {
+			sellerRef.child(uidVal).set({keyword:keyVal, store:storeVal, fno:fnoVal}, function () {
 	            console.log("TestSaved....");
 			});
 			

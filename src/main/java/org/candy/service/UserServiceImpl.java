@@ -1,7 +1,6 @@
 package org.candy.service;
 
 import org.candy.domain.UserAuthVO;
-import org.candy.domain.UserDetailsVO;
 import org.candy.domain.UserVO;
 import org.candy.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +21,7 @@ public class UserServiceImpl implements UserService{
 	private PasswordEncoder encoder;
 	
 	@Override
-	public UserDetailsVO read(String uid) {
+	public UserVO read(String uid) {
 		//없어도 되는거 아닌가?
 		return mapper.read(uid);
 	}

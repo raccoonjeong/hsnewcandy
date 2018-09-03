@@ -65,7 +65,7 @@ public class LoginController {
 		String email = vo.getEmail();
 		String phone = vo.getPhone_number();
 				
-		if (uid != null && uid.trim().length() != 0 && upw != null && upw.trim().length() != 0 &&
+		if (uid != "anonymousUser" && uid != null && uid.trim().length() != 0 && upw != null && upw.trim().length() != 0 &&
 				uname != null && uname.trim().length() != 0 && email != null && email.trim().length() != 0
 				&& phone != null && phone.trim().length() != 0) {
 			service.create(vo);

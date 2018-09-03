@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.candy.domain.Criteria;
 import org.candy.domain.TruckVO;
+import org.candy.domain.UserTruckVO;
 
 public interface TruckMapper {
 	
@@ -40,6 +41,8 @@ public interface TruckMapper {
 	
 	//오픈클로즈
 	public void openClose(@Param("uid")String uid, @Param("value")String value);
+	
+	public UserTruckVO readMyTruck(String uid);
 	
 
 

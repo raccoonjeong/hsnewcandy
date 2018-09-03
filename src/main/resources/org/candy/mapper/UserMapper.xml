@@ -5,7 +5,7 @@
 
 <mapper namespace="org.candy.mapper.UserMapper">
 	<!-- 게시물 조회할때 댓글의 데이터까지 같이 가져오는 기능으로 이해하기 -->
-	<resultMap type="org.candy.domain.UserDetailsVO" id="userMap">
+	<resultMap type="org.candy.domain.UserVO" id="userMap">
 		<id property="uid" column="uid" />
 		<result property="upw" column="upw" />
 		<result property="uname" column="uname" />
@@ -14,11 +14,6 @@
 		<result property="role" column="role" />
 		<result property="regdate" column="regdate" />
 		<result property="updatedate" column="updatedate" />
-		<result property="title" column="title" />
-		<result property="open_check" column="open_check" />
-		<result property="keyword" column="keyword" />
-		<result property="lat" column="lat" />
-		<result property="lng" column="lng" />
 		<collection property="authList" resultMap="authMap"></collection>
 	</resultMap>
 
@@ -31,14 +26,11 @@
 
 		select u.uid, upw, uname, email,
 		phone_number,
-		role, auth, u.regdate, u.updatedate,
-		title, open_check, keyword, lat, lng
+		role, auth, u.regdate, u.updatedate
 		from
 		tbl_user u
 		inner join tbl_user_auth a
 		on u.uid = a.uid
-		left outer join tbl_truck as t
-		on u.uid = t.writer
 		where u.uid=#{uid}
 
 	</select>

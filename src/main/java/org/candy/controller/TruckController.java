@@ -1,13 +1,17 @@
 package org.candy.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.candy.domain.Criteria;
 import org.candy.domain.PageMaker;
 import org.candy.domain.TruckVO;
+import org.candy.domain.UserTruckVO;
 import org.candy.service.TruckService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,6 +47,14 @@ public class TruckController {
 				new PageMaker(cri, totalCount);
 		model.addAttribute("pm",pm);
 		
+		//현재유저 아이디 알아내기
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+		String uid = authentication.getName();
+		log.info("현재유저는..........."+ uid);
+		if(uid != "anonymousUser") {
+			log.info("로그인한 유저는..........."+ uid);
+			model.addAttribute("myTruck",service.readMyTruck(uid));
+		}
 		
 		
 	}

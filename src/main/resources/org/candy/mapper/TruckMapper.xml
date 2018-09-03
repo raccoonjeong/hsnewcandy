@@ -6,7 +6,8 @@
 <mapper namespace="org.candy.mapper.TruckMapper">
 
 	<select id="getAttach" resultType="string">
-		select fullName from tbl_attach where fno = #{fno} order by regdate
+		select fullName from
+		tbl_attach where fno = #{fno} order by regdate
 	</select>
 
 	<delete id="deleteAttach">
@@ -14,16 +15,19 @@
 	</delete>
 
 	<insert id="replaceAttach">
-		insert into tbl_attach(fullName, fno) values (#{fullName}, #{fno})
+		insert into tbl_attach(fullName, fno) values
+		(#{fullName}, #{fno})
 	</insert>
 
 	<insert id="addAttach">
-		insert into tbl_attach (fullName, fno) values (#{fullName},
+		insert into tbl_attach (fullName, fno) values
+		(#{fullName},
 		last_insert_id())
 	</insert>
 
 	<insert id="addAttachRepresent">
-		insert into tbl_attach (fullName, fno, represent) values (#{fullName},
+		insert into tbl_attach (fullName, fno, represent)
+		values (#{fullName},
 		last_insert_id(), 't')
 	</insert>
 
@@ -41,11 +45,13 @@
 	</sql>
 
 	<update id="updateReviewCnt">
-		update tbl_truck set reviewcnt = reviewcnt + #{amount} where fno=#{fno}
+		update tbl_truck set reviewcnt = reviewcnt +
+		#{amount} where fno=#{fno}
 	</update>
-	
+
 	<update id="updateLikeCnt">
-		update tbl_truck set likecnt = likecnt + #{amount} where fno=#{fno}
+		update tbl_truck set likecnt = likecnt + #{amount}
+		where fno=#{fno}
 	</update>
 
 	<select id="list" resultType="org.candy.domain.TruckVO">
@@ -53,7 +59,8 @@
 		tbl_truck.regdate, updatedate, reviewcnt, likecnt, fullname, represent
 		from tbl_truck
 		left outer join tbl_attach
-		on tbl_truck.fno = tbl_attach.fno and represent = 't'
+		on tbl_truck.fno =
+		tbl_attach.fno and represent = 't'
 		<include refid="search"></include>
 		order by fno desc
 		limit #{skip}, 10
@@ -65,8 +72,10 @@
 	</select>
 
 	<insert id="register">
-		insert into tbl_truck (title, content, writer, lat, lng, keyword)
-		values (#{title},#{content},#{writer}, #{lat}, #{lng}, #{keyword});
+		insert into tbl_truck (title, content, writer, lat,
+		lng, keyword)
+		values (#{title},#{content},#{writer}, #{lat}, #{lng},
+		#{keyword});
 	</insert>
 
 	<select id="read" resultType="org.candy.domain.TruckVO">
@@ -79,21 +88,29 @@
 	</delete>
 
 	<update id="modify">
-		update tbl_truck set title=#{title}, content=#{content},
-		open_check=#{open_check}, lat=#{lat}, lng=#{lng}, updatedate=now()
-		where fno=#{fno};
+		update tbl_truck set title=#{title},
+		content=#{content},
+		open_check=#{open_check}, lat=#{lat}, lng=#{lng},
+		updatedate=now()
+		where fno=#{fno}
 	</update>
 
 
 	<update id="updateViewCnt">
-		update tbl_truck set viewcnt = viewcnt + 1 where fno = #{fno}
+		update tbl_truck set viewcnt = viewcnt + 1 where fno
+		= #{fno}
 	</update>
-	
+
 	<update id="openClose">
-		update tbl_truck set open_check = #{value} where writer = #{uid}
+		update tbl_truck set open_check = #{value} where
+		writer = #{uid}
 	</update>
-	
-	
-	
-	
+
+	<select id="readMyTruck" resultType="org.candy.domain.UserTruckVO">
+		select fno, title, open_check, keyword, lat, lng from
+		tbl_truck where writer = #{uid}
+	</select>
+
+
+
 </mapper>

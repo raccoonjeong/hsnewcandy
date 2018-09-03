@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.candy.domain.Criteria;
 import org.candy.domain.TruckVO;
+import org.candy.domain.UserTruckVO;
 
 public interface TruckService {
 	
@@ -27,6 +28,7 @@ public interface TruckService {
 	
 	public void openClose(String uid, String value);
 	
+	public UserTruckVO readMyTruck(String uid);
 
 
 }

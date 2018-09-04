@@ -106,7 +106,8 @@ text-align: center;
 }
 .myTruck button{
 /* border:1px solid #8a4680; */
-margin-top: 5px
+margin-top: 10px;
+width: 100px
 }
 
 .myTruck button:hover{
@@ -122,9 +123,26 @@ background-color: #e5e5e5;
 background-color:#DBA901
 }
 
-.myTruck .modifyBtn{
-background-color:#A5DF00
+.myTruck .modifyBtn, .deleteBtn, .regBtn, .keywordBtn{
+background-color:#9AC900
 }
+
+.myTruck .regBtn{
+width: 150px;
+}
+.myTruck .keywordBtn{
+width: 150px;
+}
+
+@media screen and (max-width: 480px) {
+
+	.myTruck button{	
+	padding: 0;
+	width: 80%;
+	}
+
+}
+
 
 
 #header .logo .loginbtn{
@@ -190,55 +208,62 @@ height : 300px;
 	</header>
 	<!-- Nav -->
 	<nav id="menu">
-		<ul class="links">
+		<ul class="links" style="margin: 0 0 10rem 0;">
 			<li><a href="/home">Home</a></li>
 			<li><a href="/up/ajax">Best Food Truck</a></li>
 			<li><a href="/board/list">Free Board</a></li>
 			<li><a href="/mypage">My page</a></li>
 		</ul>
-		<br><br><br><br><br><br><br><br><br>
-		<ul>
-			<c:if test="${user.vo.role=='s'}">
+		
+		
+		<ul style="bottom:0;"> 
+			
  				
  				<li class = "myTruck">
- 				
+ 				<c:if test="${user.vo.role=='s'}">
  					<c:if test="${myTruck.title==null}">
  						${user.vo.uname}님, <br>
 						아직 자신의 푸드트럭을 <br>등록하지 않으셨나요?<br>
-						<button id="regbtn">Register</button>
+						<div style="margin-bottom:10px; border-top: 1px solid rgba(255, 255, 255, 0.5);">
+						<button id="regbtn" class = "regBtn">Register</button>
+						</div>
 					</c:if>
 					<c:if test="${myTruck.title!=null}">
 						${user.vo.uname}님, <br>
 						자신의 푸드트럭을 관리해보세요.<br>
 						<strong>${myTruck.title}</strong> <br>
-						
-						<c:if test="${myTruck.open_check=='f'}">
-							<button id = "openBtn" class = "now" >Open</button>
-							<button id = "noCloseBtn">Close</button>
-						</c:if>
-						
-						<c:if test="${myTruck.open_check=='t'}">
-							<button id = "noOpenBtn">Open</button>
-							<button id = "closeBtn" class = "now">Close</button>
-						</c:if>
-					
-						<button class = "modifyBtn">Modify</button>
+						<div style="margin-bottom:10px; border-top: 1px solid rgba(255, 255, 255, 0.5);">
+							<c:if test="${myTruck.open_check=='f'}">
+								<button id = "openBtn" class = "now" >Open</button>
+								<button id = "noCloseBtn">Close</button>
+							</c:if>
+							
+							<c:if test="${myTruck.open_check=='t'}">
+								<button id = "noOpenBtn" >Open</button>
+								<button id = "closeBtn" class = "now">Close</button>
+							</c:if>
+						</div>
+						<div style="margin-bottom:10px; border-top: 1px solid rgba(255, 255, 255, 0.5);">
+							<button class = "modifyBtn">Modify</button>
+							<button class = "deleteBtn">Delete</button>
+						 </div>
 					</c:if>
-					
-				</li>	  	
-				
-			</c:if>
-			<li class = "myTruck">
-			<c:if test="${user.vo.role=='c'}">
- 				${user.vo.uname}님, <br>
-				관심키워드를 설정해보세요.<br> 
-				실시간 알림을 보내드려요. 				
- 				<button id = "keywordBtn">My Keyword</button>
+						
+						
+				</c:if>
+					<c:if test="${user.vo.role=='c'}">
+		 				${user.vo.uname}님, <br>
+						관심키워드를 설정해보세요.<br> 
+						실시간 알림을 보내드려요. 		
+						<div style="margin-bottom:10px; border-top: 1px solid rgba(255, 255, 255, 0.5);">		
+		 				<button id = "keywordBtn" class="keywordBtn">My Keyword</button>
+		 				</div>
  			
- 				
- 			</c:if>
-			</li>
-		</ul>		
+ 					</c:if>
+				</li>	  	
+		
+		</ul>	
+		
 	</nav>
 	<form id="openClose"> 
 		<input type="hidden" name="uid" value="${user.username}">
@@ -266,9 +291,13 @@ height : 300px;
 	<section id="one" class="wrapper style2">
 
 		<div class="inner">
-
+<c:if test="${fn:length(list)==0 }">
+							<div 
+								style="min-height: 100px; text-align: center; font-size: 1.8em;">내용없음
+							</div>
+						</c:if>
 			<div class="grid-style">
-
+						
 				
 				<c:forEach items="${list}" var="vo">
 				<div>

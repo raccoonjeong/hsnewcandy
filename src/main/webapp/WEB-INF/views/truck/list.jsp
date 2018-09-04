@@ -109,6 +109,24 @@ text-align: center;
 margin-top: 5px
 }
 
+.myTruck button:hover{
+background-color: #0B614B;
+}
+
+.myTruck button:active {
+background-color: #e5e5e5;
+}
+
+
+.myTruck .now{
+background-color:#DBA901
+}
+
+.myTruck .modifyBtn{
+background-color:#A5DF00
+}
+
+
 #header .logo .loginbtn{
 float: right;
 display: inline-block;
@@ -193,11 +211,18 @@ height : 300px;
 						${user.vo.uname}님, <br>
 						자신의 푸드트럭을 관리해보세요.<br>
 						<strong>${myTruck.title}</strong> <br>
-						<button id = "openBtn">Open</button>
 						
-						<button id = "closeBtn">Close</button>
-
-						<button>Modify</button>
+						<c:if test="${myTruck.open_check=='f'}">
+							<button id = "openBtn" class = "now" >Open</button>
+							<button id = "noCloseBtn">Close</button>
+						</c:if>
+						
+						<c:if test="${myTruck.open_check=='t'}">
+							<button id = "noOpenBtn">Open</button>
+							<button id = "closeBtn" class = "now">Close</button>
+						</c:if>
+					
+						<button class = "modifyBtn">Modify</button>
 					</c:if>
 					
 				</li>	  	
@@ -455,6 +480,7 @@ height : 300px;
 <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-functions.js"></script>
 
 <script>
+$(document).ready(function() {
   // Initialize Firebase
   var config = {
     apiKey: "AIzaSyB8HBoFl5-x61YX3Gd6U5lHGqspOlB-SUE",
@@ -501,6 +527,16 @@ height : 300px;
 			
 		}else{return;}
 	});
+	
+	
+	$("#noCloseBtn").on("click",function(e) {
+		alert("아직 영업을 시작하지 않았습니다.");
+	});
+	$("#noOpenBtn").on("click",function(e) {
+		alert("현재 영업중입니다.");
+	});
+	
+});
   
 </script>
 	

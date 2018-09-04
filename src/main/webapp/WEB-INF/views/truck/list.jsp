@@ -90,12 +90,20 @@ text-align:center;
 font-size: 1.5em;
 }
 ul li {
-			padding-left: 0rem;
-		}
-		ul {
-    list-style: disc;
-    margin: 0 0 2rem 0;
-    padding-left: 0rem}
+padding-left: 0rem;
+}
+ul {
+   list-style: disc;
+   margin: 0 0 2rem 0;
+   padding-left: 0rem
+   }
+
+.myTruckUl{
+bottom: 30px;
+position: absolute;
+width: 80%;
+}    
+    
 
 .myTruck{
 color:rgba(255, 255, 255, 0.5);
@@ -190,15 +198,15 @@ height : 300px;
 <div class="logOutbtn">
 <sec:authorize access="isAuthenticated()">
 	<form action="/logout" method="post" >
-	<sec:authentication property="principal" var="user"/>
-	<div class="btnlogOut1">
-	<strong>${user.vo.uname}<c:if test="${user.vo.role=='c'}">(Consumer)</c:if>
-	<c:if test="${user.vo.role=='s'}">(Seller)</c:if></strong>님
-	</div>
-	<div class="btnlogOut2">
-	<button class="lOutbtn">logout</button>
-	</div>
-	<input type="hidden" name = "${_csrf.parameterName}" value ="${_csrf.token}">
+		<sec:authentication property="principal" var="user"/>
+		<div class="btnlogOut1">
+			<strong>${user.vo.uname}<c:if test="${user.vo.role=='c'}">(Consumer)</c:if>
+			<c:if test="${user.vo.role=='s'}">(Seller)</c:if></strong>님
+		</div>
+		<div class="btnlogOut2">
+			<button class="lOutbtn">logout</button>
+		</div>
+		<input type="hidden" name = "${_csrf.parameterName}" value ="${_csrf.token}">
 	</form>
 </sec:authorize>
 </div>
@@ -208,7 +216,7 @@ height : 300px;
 	</header>
 	<!-- Nav -->
 	<nav id="menu">
-		<ul class="links" style="margin: 0 0 10rem 0;">
+		<ul class="links">
 			<li><a href="/home">Home</a></li>
 			<li><a href="/up/ajax">Best Food Truck</a></li>
 			<li><a href="/board/list">Free Board</a></li>
@@ -216,7 +224,7 @@ height : 300px;
 		</ul>
 		
 		
-		<ul style="bottom:0;"> 
+		<ul class="myTruckUl"> 
 			
  				
  				<li class = "myTruck">
@@ -230,8 +238,8 @@ height : 300px;
 					</c:if>
 					<c:if test="${myTruck.title!=null}">
 						${user.vo.uname}님, <br>
-						자신의 푸드트럭을 관리해보세요.<br>
-						<strong>${myTruck.title}</strong> <br>
+						자신의 푸드트럭을 관리해보세요.
+						<strong>${myTruck.title}</strong>
 						<div style="margin-bottom:10px; border-top: 1px solid rgba(255, 255, 255, 0.5);">
 							<c:if test="${myTruck.open_check=='f'}">
 								<button id = "openBtn" class = "now" >Open</button>

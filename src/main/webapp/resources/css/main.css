@@ -479,7 +479,18 @@
 		margin-left: 8.33333%;
 	}
 
-	@media screen and (max-width: 1680px) {
+	@media screen and ( max-width: 1680px) {
+	
+	.titleInput{
+width:48%;
+margin-right:4%;
+padding: 2rem 0 0 0rem !important;
+}
+ 
+.writerInput{
+width:48%;
+padding:2rem 0 0 0rem !important;
+}    
 
 		.row > * {
 			padding: 0 0 0 2rem;
@@ -1341,6 +1352,18 @@
 
 	@media screen and (max-width: 480px) {
 
+	.titleInput{
+	width:100% !important;
+	padding:1.25rem 0 0 0rem !important;
+	}
+	.writerInput{
+	width:100% !important;
+	padding:1.25rem 0 0 0rem !important;
+	}
+	
+	.regBtnBox{
+	padding: 20px 0 0 0 !important;
+	}
 		.row > * {
 			padding: 0 0 0 1.25rem;
 		}

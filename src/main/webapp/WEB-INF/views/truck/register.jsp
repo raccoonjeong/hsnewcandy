@@ -13,7 +13,7 @@
 <title>Hielo by TEMPLATED</title>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="/resources/css/main.css?ver=5" />
+<link rel="stylesheet" href="/resources/css/main.css?ver=1" />
 
 <style>
 .subpage {
@@ -101,7 +101,26 @@ margin-top : 30px;
 	
 	width: 100%;
 }
-    
+
+#header .logo .loginbtn{
+float: right;
+display: inline-block;
+text-align: right;
+}
+
+#header .logo .loginbtn .logOutbtn .btnlogOut1{
+
+float: left;
+margin-right: 10px;
+
+}
+
+#header .logo .loginbtn .logOutbtn .btnlogOut2{
+display: inline-block;
+text-align: left;
+}
+
+
 </style>
 </head>
 <body class="subpage">
@@ -118,15 +137,21 @@ margin-top : 30px;
 	</form>	
 </sec:authorize>
 
+<div class="logOutbtn">
 <sec:authorize access="isAuthenticated()">
-	<form action="/logout" method="post" ><sec:authentication property="principal" var="user"/>
-	<strong>${user.vo.uname}<c:if test="${user.vo.role=='c'}">(Consumer)</c:if>
-	<c:if test="${user.vo.role=='s'}">(Seller)</c:if></strong>님
-	<button>logout</button>
-	<input type="hidden" name = "${_csrf.parameterName}" value ="${_csrf.token}">
+	<form action="/logout" method="post" >
+		<sec:authentication property="principal" var="user"/>
+		<div class="btnlogOut1">
+			<strong>${user.vo.uname}<c:if test="${user.vo.role=='c'}">(Consumer)</c:if>
+			<c:if test="${user.vo.role=='s'}">(Seller)</c:if></strong>님
+		</div>
+		<div class="btnlogOut2">
+			<button class="lOutbtn">logout</button>
+		</div>
+		<input type="hidden" name = "${_csrf.parameterName}" value ="${_csrf.token}">
 	</form>
 </sec:authorize>
-
+</div>
 
 		 </div>
 		</div>
@@ -161,12 +186,13 @@ margin-top : 30px;
 				<form method="post" action="register" id="registerForm">
 				
 					<div class="row uniform" style = "margin-left:0;">
-						<div class="6u 12u$(xsmall)" style = "padding-left : 0">
+						
+						<div class="6u 12u$(xsmall) titleInput">
 							<input type="text" name="title" id="name" value="제목"
 								placeholder="title" />
 						</div>
 
-						<div class="6u 12u$(xsmall)">
+						<div class="6u 12u$(xsmall) writerInput">
 							<input type="text" name="writer" id="writer" value='<sec:authentication property="principal.username"/>' 
 							readonly="readonly"	placeholder="writer" />
 						</div>
@@ -190,7 +216,7 @@ margin-top : 30px;
 
 						<div class="12u$" style = "padding-left : 0">
 							<textarea name="content" id="message"
-								placeholder="Enter your message" rows="20"></textarea>
+								placeholder="Enter your message" rows="10"></textarea>
 						</div>
 						<h3>File Upload</h3>
 						<div class="fileDrop">
@@ -206,7 +232,7 @@ margin-top : 30px;
 					
 					<div id="map" style="width:100%; height:400px;" ></div>
 					
-						<div class="12u$">
+						<div class="12u$ regBtnBox"> <!-- 1371 -->
 						
 							<ul class="actions">
 								<li><input type="button" class="special list" value="List"></li>

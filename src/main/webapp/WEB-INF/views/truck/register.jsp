@@ -262,7 +262,7 @@ text-align: left;
 <a href="{{fullName}}" class="btn btn-default btn-xs pull-right delbtn"><i class="fa fa-fw fa-remove"></i></a>
 	
 					<input type="radio" id="{{fullName}}" name="priority" value="{{fullName}}">
-					<label for="{{fullName}}">대표사진으로 쓰기</label>
+					<label for="{{fullName}}">대표사진 선택</label>
 </div>
 </li>
 
@@ -365,65 +365,72 @@ $(document).ready(function(){
 		var maxSize  =5*1024*1024; 
 	
 		console.log("filesize",fileSize);
-if(fileSize<maxSize){			
-		var formData = new FormData();
-		console.log("size", fileSize);
-		formData.append("file" , file);
+		if(fileSize<maxSize){			
+			var formData = new FormData();
+			console.log("size", fileSize);
+			formData.append("file" , file);
 		
 		
-		setCsrf(csrfToken);
+			setCsrf(csrfToken);
 		
-		$.ajax({
-			url: '/ex/uploadAjax',
-			data:formData,
-			dataType: 'text',
-			processData:false,
-			contentType:false,
-			type: 'POST',
-			success: function(data){		
-				console.log("data.....",data);	     	   
-				var fileInfo = getFileInfo(data);	     	   
-	     	   console.log("FileInfo....",fileInfo);	     	   
-	       	   var html = template(fileInfo);
-	         	$(".uploadedList").append(html);
-	         }
-		})
+			$.ajax({
+				url: '/ex/uploadAjax',
+				data:formData,
+				dataType: 'text',
+				processData:false,
+				contentType:false,
+				type: 'POST',
+				success: function(data){		
+					console.log("data.....",data);	     	   
+					var fileInfo = getFileInfo(data);	     	   
+		     		console.log("FileInfo....",fileInfo);	     	   
+		       		var html = template(fileInfo);
+		         	$(".uploadedList").append(html);
+		         }
+			});
+
 		}else{
-     	console.log("체크하고있다.",maxSize);
-     	alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.    ");
-     	return ;
- }
+	     	console.log("체크하고있다.",maxSize);
+	     	alert("첨부파일 사이즈는 5MB 이내로 등록 가능합니다.    ");
+	     	return ;
+		}
 	});
 	
 	
 
 	
 	
-       $("#registerForm").submit(function(e){
+	$("#registerForm").submit(function(e){
+
+		e.preventDefault();
+		if(!$('input:radio[name=priority]:checked').val()){
+			alert("대표사진을 지정하세요.");
+			return;
+		}
     	   
-    	   e.preventDefault();
-    	   if(!$('input:radio[name=priority]:checked').val()){
-    		   alert("대표사진을 지정하세요.");
-    		   return;
-    		   }
-    	   
-    	   var that =$(this);
-    	   console.log("that..1",that);
-    	   var str="";
-    	   $(".uploadedList .delbtn").each(function(index){
-     		  str+="<input type='hidden' name ='files["+index+"]' value='"+$(this).attr("href")+"'>";
-     		  /* alert(index); */
-     		  });
-    	   
-    	   	 console.log("that..2",that.get(0));
-    	   	alert($('input:radio[name=priority]:checked').val());
-    	   	 that.append("<input type='hidden' name = 'lat' value='"+lat+"'>");
-    	   	that.append("<input type='hidden' name = 'lng' value='"+lng+"'>");
-    	   	that.append("<input type='hidden' name = 'fullname' value='"+$('input:radio[name=priority]:checked').val()+"'>");
-      		 that.append(str);
-     	 	 that.get(0).submit();
-     
-      	 });
+		var that =$(this);
+		console.log("that..1",that);
+		var str="";
+		$(".uploadedList .delbtn").each(function(index){
+			str+="<input type='hidden' name ='files["+index+"]' value='"+$(this).attr("href")+"'>";
+			/* alert(index); */
+		});
+  	   
+		console.log("that..2",that.get(0));
+		alert($('input:radio[name=priority]:checked').val());
+		that.append("<input type='hidden' name = 'lat' value='"+lat+"'>");
+		that.append("<input type='hidden' name = 'lng' value='"+lng+"'>");
+		that.append("<input type='hidden' name = 'fullname' value='"+$('input:radio[name=priority]:checked').val()+"'>");
+		that.append(str);
+		that.get(0).submit();
+    
+	});
+       
+	$(".uploadedList").on("click",".mailbox-attachment-name",function(event){
+		//크로스브라우징 고려
+		event.preventDefault ? event.preventDefault() : (event.returnValue = false);
+
+	});
        
    	$(".uploadedList").on("click",".delbtn",function(e){
    		e.preventDefault();
@@ -444,11 +451,14 @@ if(fileSize<maxSize){
 					console.log(that.parent("div").parent("span").parent("span").parent("li")); */
 				}
 			}
-			
-			
 		});
-		
    	});
+   	
+   	
+   	
+   	$(".actions").on("click", ".list", function(e) {
+		self.location = "/truck/list${cri.makeSearch(cri.page)}";
+	});
        
 });
    
@@ -482,12 +492,6 @@ if(fileSize<maxSize){
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"
 		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
 		crossorigin="anonymous"></script>
-	<script>
-		/* $(document).ready(function(e) {
-			$(".actions").on("click", ".list", function(e) {
-				self.location = "//list${cri.makeSearch(cri.page)}";
-			});
-		}); */
-	</script>
+	
 </body>
 </html>

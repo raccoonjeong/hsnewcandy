@@ -840,6 +840,16 @@ padding-top: 0 ;
 			alert("수정되었습니다.");
 		});
 
+		
+		var msg = '<c:out value="${msg}"/>';
+        
+        if(msg=="successModify" && !history.state){
+            alert("수정이 완료되었습니다.");
+        	}
+        if(msg=="failModify" && !history.state){
+            alert("수정 실패하였습니다. 내용을 똑바로 입력하세요.");
+        	}
+        history.replaceState({}, null, null);
 	});
 </script>
 <script type="text/javascript" src="/resources/js/pageMaker.js"></script>

@@ -142,10 +142,10 @@ public class TruckController {
 		
 		if (title != null && title.trim().length() != 0 && content != null && content.trim().length() != 0) {
 			service.modify(vo);
-			rttr.addFlashAttribute("msg", "success");
+			rttr.addFlashAttribute("msg", "successModify");
 			
 		} else {
-			rttr.addFlashAttribute("msg", "fail");
+			rttr.addFlashAttribute("msg", "failModify");
 		}
 		return "redirect:/truck/read" +cri.makeSearch(cri.getPage())+"&fno="+fno ;
 	}

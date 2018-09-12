@@ -34,6 +34,9 @@ public interface TruckMapper {
 	
 	public void deleteAttach(Integer fno);
 	
+	
+	public int replaceAttachRepresent(@Param("fullName")String fullName,@Param("fno")Integer fno);
+	
 	//파라미터 여러개일때 @Param 붙이기
 	public void replaceAttach(@Param("fullName")String fullName,@Param("fno")Integer fno);
 	

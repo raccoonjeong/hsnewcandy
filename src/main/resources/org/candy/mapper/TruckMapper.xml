@@ -18,6 +18,11 @@
 		insert into tbl_attach(fullName, fno) values
 		(#{fullName}, #{fno})
 	</insert>
+	
+	<insert id="replaceAttachRepresent">
+		insert into tbl_attach (fullName, fno, represent)
+		values (#{fullName}, #{fno}, 't')
+	</insert>
 
 	<insert id="addAttach">
 		insert into tbl_attach (fullName, fno) values
@@ -90,7 +95,7 @@
 	<update id="modify">
 		update tbl_truck set title=#{title},
 		content=#{content},
-		open_check=#{open_check}, lat=#{lat}, lng=#{lng},
+		lat=#{lat}, lng=#{lng},
 		updatedate=now()
 		where fno=#{fno}
 	</update>

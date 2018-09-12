@@ -499,6 +499,20 @@ height : 300px;
 				
 				
 			});
+			
+			
+			/* 수정  */
+			$(".modifyBtn").on("click", function(e) {
+
+				var fno = "${myTruck.fno}";
+				alert("위치정보와 첨부파일이 초기화됩니다. 그래도 수정하실건가요?");
+				
+				self.location="/truck/modify${cri.makeSearch(cri.page)}&fno="+fno;
+
+			});
+			
+			
+			
 		});
 	</script>
 	

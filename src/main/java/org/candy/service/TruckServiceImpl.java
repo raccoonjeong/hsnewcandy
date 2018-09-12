@@ -79,14 +79,24 @@ public class TruckServiceImpl implements TruckService{
 	@Transactional
 	public void modify(TruckVO vo) {
 		
+		log.info("modify vo........"+vo);
 		mapper.deleteAttach(vo.getFno());
-		String[] files = vo.getFiles();
-		if(files == null) {return ;}
 		
-		for(String fileName: files) {
-			mapper.replaceAttach(fileName, vo.getFno());
+		
+		String[] files = vo.getFiles();
+		log.info("dº¾½Ã´Ù........"+vo.getFullname());
+		if(files==null) {return ;}
+		
+		for(String fileName :files) {
 			
-		}		
+			if(fileName.equals(vo.getFullname())) {
+				
+				mapper.replaceAttachRepresent(fileName, vo.getFno());
+				log.info("¤¾¤¾¤¾¤¾¤¾");
+			}
+			else{
+				mapper.replaceAttach(fileName, vo.getFno());}
+		}
 
 		mapper.modify(vo);
 	}

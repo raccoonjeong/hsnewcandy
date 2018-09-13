@@ -255,6 +255,7 @@ height : 300px;
 							<button class = "modifyBtn">Modify</button>
 							<button class = "deleteBtn">Delete</button>
 						 </div>
+						 
 					</c:if>
 						
 						
@@ -277,6 +278,10 @@ height : 300px;
 		<input type="hidden" name="uid" value="${user.username}">
 		<input type="hidden" name = "${_csrf.parameterName}" value ="${_csrf.token}">
 	</form>
+	<form id="removeForm" method="post" action="/truck/remove">
+		 <input type="hidden" name="fno" value="${myTruck.fno}">
+		 <input type="hidden" name = "${_csrf.parameterName}" value ="${_csrf.token}">
+	 </form>
 	<!-- One -->
 	<section id="One" class="wrapper style3">
 		<div class="inner">
@@ -500,15 +505,24 @@ height : 300px;
 				
 			});
 			
+			var fno = "${myTruck.fno}";
 			
 			/* 수정  */
 			$(".modifyBtn").on("click", function(e) {
-
-				var fno = "${myTruck.fno}";
-				alert("위치정보와 첨부파일이 초기화됩니다. 그래도 수정하실건가요?");
 				
+				alert("위치정보와 첨부파일이 초기화됩니다. 그래도 수정하실건가요?");
 				self.location="/truck/modify${cri.makeSearch(cri.page)}&fno="+fno;
 
+			});
+			
+			$(".deleteBtn").on("click", function(e){
+				console.log("삭제시도");
+				
+				e.preventDefault();
+				if(!confirm('정말로 삭제하시겠습니까?')) return;
+				$('#removeForm')[0].submit();
+			
+				
 			});
 			
 			

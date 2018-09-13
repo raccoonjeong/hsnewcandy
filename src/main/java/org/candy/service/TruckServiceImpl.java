@@ -69,9 +69,9 @@ public class TruckServiceImpl implements TruckService{
 
 	@Override
 	@Transactional
-	public int remove(int fno) {
+	public void remove(int fno) {
 		mapper.deleteAttach(fno);
-		return mapper.remove(fno);
+		mapper.remove(fno);
 	}
 
 

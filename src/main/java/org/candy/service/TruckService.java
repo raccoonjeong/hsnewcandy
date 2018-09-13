@@ -16,7 +16,7 @@ public interface TruckService {
 
 	public TruckVO read(int fno);
 	
-	public int remove(int fno);
+	public void remove(int fno);
 
 	public void modify(TruckVO vo);
 	
